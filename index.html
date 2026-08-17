@@ -81,10 +81,11 @@
   .nav-logo{display:flex; align-items:center; gap:10px; text-decoration:none;}
   .nav-badge{
     width:38px; height:38px; border-radius:50%; border:1.5px solid var(--cream);
-    display:flex; align-items:center; justify-content:center;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
     font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:700;
     font-size:14px; flex-shrink:0;
   }
+  .nav-badge img{width:100%; height:100%; object-fit:cover;}
   .nav-word{font-family:var(--font-display); font-size:13px; letter-spacing:0.08em; text-transform:uppercase;}
   .nav-links{display:none; gap:28px; font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;}
   .nav-links a{text-decoration:none; opacity:0.85; transition:opacity .2s;}
@@ -110,6 +111,10 @@
     background:linear-gradient(0deg, rgba(10,9,8,0.96) 0%, rgba(10,9,8,0.55) 42%, rgba(10,9,8,0.35) 65%, rgba(10,9,8,0.6) 100%);
   }
   .hero-inner{position:relative; z-index:2; width:100%; padding:0 20px 56px; text-align:center;}
+  .hero-logo{
+    height:56px; width:auto; margin:0 auto 22px;
+    opacity:0; animation:riseIn .7s ease 0s forwards;
+  }
   .hero-kicker{
     font-size:12px; letter-spacing:0.22em; text-transform:uppercase; color:var(--khaki);
     font-weight:700; margin-bottom:18px; opacity:0; animation:riseIn .7s ease .1s forwards;
@@ -130,6 +135,7 @@
     display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
     opacity:0; animation:riseIn .8s ease .46s forwards;
   }
+  .hero-actions .btn{border-radius:999px; padding:15px 32px;}
   @keyframes riseIn{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
   .scroll-cue{
     position:absolute; left:50%; bottom:18px; transform:translateX(-50%);
@@ -260,12 +266,12 @@
   .mobilepay-box .lbl{font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--khaki-dim);}
 
   /* ---------- marquee / rullebånd ---------- */
-  .marquee-section{padding:56px 0; border-top:1px solid var(--line);}
+  .marquee-section{padding:68px 0; border-top:1px solid var(--line);}
   .marquee-label{text-align:center; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--khaki-dim); margin-bottom:26px;}
   .marquee{overflow:hidden; position:relative; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);}
-  .marquee-track{display:flex; width:max-content; gap:64px; animation:scroll 28s linear infinite;}
+  .marquee-track{display:flex; width:max-content; gap:76px; animation:scroll 28s linear infinite;}
   .marquee:hover .marquee-track{animation-play-state:paused;}
-  .marquee-item{display:flex; align-items:center; justify-content:center; height:40px; opacity:0.65; filter:grayscale(1) brightness(1.6); flex-shrink:0;}
+  .marquee-item{display:flex; align-items:center; justify-content:center; height:56px; opacity:0.95; flex-shrink:0;}
   .marquee-item img{height:100%; width:auto;}
   .marquee-item.text-logo{font-family:var(--font-display); font-size:18px; letter-spacing:0.02em; color:var(--cream); text-transform:uppercase; white-space:nowrap;}
   @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
@@ -279,7 +285,7 @@
 
 <nav class="nav" id="nav">
   <a href="#top" class="nav-logo">
-    <span class="nav-badge">CK</span>
+    <span class="nav-badge"><img src="assets/logo.png" alt="Café Kaiser" onerror="this.parentElement.textContent='CK';"></span>
     <span class="nav-word">Kaiser <em style="color:var(--khaki); font-style:italic;">x</em> SuperDysten</span>
   </a>
   <div class="nav-links">
@@ -299,6 +305,7 @@
   </div>
   <div class="hero-scrim"></div>
   <div class="hero-inner">
+    <img class="hero-logo" src="assets/logo.png" alt="Café Kaiser" onerror="this.remove();">
     <div class="hero-kicker">Café Kaiser er med i</div>
     <h1 class="hero-title">Kaiser<span class="x">x</span>SuperDysten</h1>
     <p class="hero-sub">Vi samler ind til CoolUnites arbejde for alvorligt syge og udsatte børn. Vær med — kom forbi, byd på en auktion, eller støt direkte.</p>
@@ -348,13 +355,10 @@
 
 <section id="taeller" class="counter-section">
   <div class="wrap counter-wrap">
-    <div class="eyebrow">Live indsamling</div>
+    <div class="eyebrow">Indsamling</div>
     <div class="counter-figure" id="counterFigure">0<span class="kr">kr.</span></div>
     <div class="counter-bar-track"><div class="counter-bar-fill" id="counterBar"></div></div>
-    <div class="counter-meta" id="counterMeta">Senest opdateret —</div>
-    <div class="counter-sources">
-      <span>MobilePay</span><span>·</span><span>Kassesystem</span><span>·</span><span>Auktioner</span>
-    </div>
+    <div class="counter-meta">Opdateres hverdag klokken 10:00</div>
   </div>
 </section>
 
@@ -411,12 +415,12 @@ const CONFIG = {
     poster: "assets/hero-poster.jpg"
   },
 
-  // Live tæller — indtastes manuelt, da beløbet samles fra MobilePay,
-  // kassesystem og auktioner. Opdater "amount" og "updated" løbende.
+  // Live tæller — indtastes manuelt hver morgen, da beløbet samles fra
+  // MobilePay, kassesystem og auktioner. Opdater kun "amount" løbende —
+  // teksten "Opdateres hverdag klokken 10:00" står fast på siden.
   counter: {
     amount: 0,          // kr. indsamlet indtil videre
-    goal: 100000,        // kr. — mål for baren under tallet (sæt 0 for at skjule baren)
-    updated: "17. august 2026"
+    goal: 100000         // kr. — mål for baren under tallet (sæt 0 for at skjule baren)
   },
 
   // Aktivitets-boksene under "Sådan er vi med". Læg jeres egne billeder
@@ -538,7 +542,6 @@ document.getElementById('marqueeTrack').innerHTML = sponsorRow + sponsorRow;
 // Counter — count-up when it scrolls into view
 const counterFigure = document.getElementById('counterFigure');
 const counterBar = document.getElementById('counterBar');
-document.getElementById('counterMeta').textContent = "Senest opdateret " + CONFIG.counter.updated;
 if (CONFIG.counter.goal > 0) {
   counterBar.style.width = Math.min(100, (CONFIG.counter.amount / CONFIG.counter.goal) * 100) + "%";
 } else {
