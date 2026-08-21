@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kaiser X SuperDysten — Sammen samler vi ind</title>
-<meta name="description" content="Café Kaiser deltager i NOVA SuperDysten for CoolUnite. Se vores aktiviteter, byd på auktioner, og følg med i indsamlingen.">
+<meta name="description" content="Café Kaiser deltager i NOVA SuperDysten for CoolUnite. Se vores aktiviteter, køb et blad til donationstræet, og følg med i indsamlingen.">
 
 <!--
 =====================================================================
   KONFIGURATION — ret her, ingen kode nedenfor behøver at røres
 =====================================================================
   Alt indhold der sandsynligvis skal ændres undervejs i kampagnen
-  (tæller, auktioner, sponsorer, video) ligger i CONFIG-objektet i
+  (tæller, donationstræ, sponsorer, video) ligger i CONFIG-objektet i
   <script> nederst i filen, markeret med samme overskrift.
   Filen er selvstændig — upload den bare som index.html, ingen build.
 =====================================================================
@@ -170,7 +170,7 @@
   }
   @media(min-width:760px){.support-box{aspect-ratio:auto;}}
   .support-box .mp-label{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--khaki-dim); margin-bottom:14px;}
-  .support-box .mp-num{font-family:var(--font-display); font-size:clamp(38px,6vw,56px); color:var(--gold); letter-spacing:0.02em;}
+  .support-box .mp-num{font-family:var(--font-display); font-size:clamp(26px,4vw,38px); color:var(--gold); letter-spacing:0.01em; text-transform:uppercase; line-height:1.05;}
   .support-box .mp-sub{margin-top:14px; font-size:13px; color:rgba(246,243,236,0.6); max-width:220px;}
   .support-text{
     background:var(--charcoal); border:1px solid var(--line); border-radius:var(--radius);
@@ -185,7 +185,7 @@
   /* ---------- aktiviteter grid ---------- */
   .grid-4{display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
   @media(min-width:640px){.grid-4{grid-template-columns:1fr 1fr;}}
-  @media(min-width:1000px){.grid-4{grid-template-columns:repeat(4,1fr);}}
+  @media(min-width:1000px){.grid-4{grid-template-columns:repeat(3,1fr);}}
   .card{
     background:var(--charcoal); position:relative;
     transition:background .25s ease; display:flex; flex-direction:column;
@@ -229,25 +229,115 @@
     font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--khaki-dim);
   }
 
-  /* ---------- auktioner ---------- */
-  .auction-list{display:grid; grid-template-columns:1fr; gap:14px;}
-  @media(min-width:700px){.auction-list{grid-template-columns:1fr 1fr;}}
-  .auction-item{
-    display:flex; gap:16px; align-items:center; background:var(--charcoal);
-    border:1px solid var(--line); padding:16px; border-radius:var(--radius);
-    transition:border-color .2s ease, transform .2s ease;
+  /* ---------- donationspakker ---------- */
+  .pkg-grid{display:grid; grid-template-columns:1fr; gap:16px;}
+  @media(min-width:820px){.pkg-grid{grid-template-columns:repeat(3,1fr);}}
+  .pkg{
+    background:var(--charcoal); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 26px; display:flex; flex-direction:column; position:relative;
+    transition:border-color .25s ease, transform .25s ease;
   }
-  .auction-item:hover{border-color:var(--khaki-dim); transform:translateY(-2px);}
-  .auction-thumb{
-    width:64px; height:64px; flex-shrink:0; border-radius:2px;
-    background:linear-gradient(160deg, var(--charcoal-2), var(--black));
-    display:flex; align-items:center; justify-content:center;
-    font-family:Georgia, serif; font-style:italic; color:var(--khaki); font-size:22px;
-    border:1px solid var(--line);
+  .pkg:hover{border-color:var(--khaki-dim); transform:translateY(-3px);}
+  .pkg.featured{border-color:rgba(215,182,84,0.5);}
+  .pkg.featured::before{
+    content:"Mest populære"; position:absolute; top:-1px; right:20px;
+    transform:translateY(-50%); background:var(--gold); color:var(--black);
+    font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    padding:4px 12px; border-radius:20px;
   }
-  .auction-item h4{font-size:15px; margin-bottom:4px;}
-  .auction-item .meta{font-size:12px; color:var(--khaki-dim); text-transform:uppercase; letter-spacing:0.05em;}
-  .auction-cta{text-align:center; margin-top:36px;}
+  .pkg-leaf{
+    width:40px; height:40px; margin-bottom:18px; color:var(--gold);
+  }
+  .pkg-leaf.sm{width:28px; height:28px;}
+  .pkg-leaf.lg{width:52px; height:52px;}
+  .pkg-name{font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--khaki-dim);}
+  .pkg-title{font-family:var(--font-display); text-transform:uppercase; font-size:24px; margin:8px 0 14px; line-height:1.05;}
+  .pkg-amount{font-family:var(--font-display); font-size:38px; color:var(--gold); line-height:1;}
+  .pkg-amount span{font-size:0.42em; color:var(--khaki); margin-left:4px;}
+  .pkg ul{list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:11px; flex-grow:1;}
+  .pkg li{display:flex; gap:10px; font-size:14px; color:rgba(246,243,236,0.78); line-height:1.45; align-items:baseline;}
+  .pkg li::before{content:"✓"; color:var(--khaki); flex-shrink:0; font-size:12px;}
+  .pkg-note{
+    margin-top:34px; text-align:center; font-size:14px; color:rgba(246,243,236,0.6);
+    border-top:1px solid var(--line); padding-top:24px;
+  }
+  .pkg-note strong{color:var(--khaki); font-weight:700;}
+  .pkg-pitch{
+    margin:0 auto 44px; max-width:640px; text-align:center;
+    font-family:Georgia, 'Times New Roman', serif; font-style:italic;
+    font-size:clamp(18px,2.6vw,24px); line-height:1.4; color:var(--cream);
+  }
+  .pkg-pitch::before, .pkg-pitch::after{content:"”"; color:var(--khaki); font-size:1.2em;}
+  .pkg-cta{text-align:center; margin-top:36px;}
+
+  /* ---------- digitalt donationstræ ---------- */
+  .tree-section{background:var(--charcoal); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .tree-stage{position:relative; max-width:760px; margin:0 auto;}
+  .tree-svg{width:100%; height:auto; display:block; overflow:visible;}
+  .tree-trunk{fill:#2f2a22;}
+  .tree-canopy circle{fill:#221f1a;}
+  .tree-leaf{
+    cursor:pointer; transform-box:fill-box; transform-origin:center;
+    transition:transform .25s ease, filter .25s ease;
+    animation:leafIn .6s ease backwards;
+  }
+  .tree-leaf:hover, .tree-leaf:focus{transform:scale(1.25); outline:none;}
+  .tree-leaf:focus-visible{filter:drop-shadow(0 0 4px var(--cream));}
+  .tree-leaf path{fill:var(--gold); filter:drop-shadow(0 2px 5px rgba(0,0,0,0.5));}
+  .tree-leaf.tier-sm path{fill:#c9a94a;}
+  .tree-leaf.tier-md path{fill:#d7b654;}
+  .tree-leaf.tier-lg path{fill:#eccd72;}
+  @keyframes leafIn{ from{opacity:0; transform:scale(0.3) translateY(-10px);} to{opacity:1;} }
+  .tree-tip{
+    position:absolute; pointer-events:none; z-index:5; opacity:0;
+    background:var(--black); border:1px solid var(--khaki-dim); border-radius:var(--radius);
+    padding:10px 14px; transform:translate(-50%,-115%); transition:opacity .18s ease;
+    white-space:nowrap; max-width:240px;
+  }
+  .tree-tip.on{opacity:1;}
+  .tree-tip .t-name{font-size:14px; font-weight:700;}
+  .tree-tip .t-tier{font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-top:2px;}
+  .tree-empty{
+    text-align:center; color:var(--khaki-dim); font-size:14px; margin-top:22px;
+  }
+  .tree-legend{
+    display:flex; flex-wrap:wrap; gap:10px 26px; justify-content:center; margin-top:34px;
+    font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--khaki-dim);
+  }
+  .tree-legend span{display:flex; align-items:center; gap:8px;}
+  .tree-legend svg{width:14px; height:14px;}
+  .tree-legend .l-sm svg{width:11px; height:11px; color:#c9a94a;}
+  .tree-legend .l-md svg{color:#d7b654;}
+  .tree-legend .l-lg svg{width:19px; height:19px; color:#eccd72;}
+
+  /* ---------- hall of fame ---------- */
+  .hof-grid{display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media(min-width:640px){.hof-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1000px){.hof-grid{grid-template-columns:repeat(3,1fr);}}
+  .hof-card{background:var(--charcoal); display:flex; flex-direction:column; transition:background .25s ease;}
+  .hof-card:hover{background:var(--charcoal-2);}
+  .hof-media{aspect-ratio:16/10; overflow:hidden; background:linear-gradient(160deg,var(--charcoal-2),var(--black)); position:relative; border-bottom:1px solid var(--line);}
+  .hof-media img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .hof-card:hover .hof-media img{transform:scale(1.04);}
+  .hof-media.is-empty::after{
+    content:"Billede mangler"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--khaki-dim);
+  }
+  .hof-body{padding:22px; display:flex; flex-direction:column; flex-grow:1;}
+  .hof-tier{font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:6px;}
+  .hof-tier svg{width:14px; height:14px;}
+  .hof-body h4{font-size:18px; margin:10px 0 8px;}
+  .hof-body p{font-size:14px; color:rgba(246,243,236,0.66); line-height:1.55; flex-grow:1;}
+  .hof-link{
+    margin-top:16px; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--khaki); text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    transition:color .2s;
+  }
+  .hof-link:hover{color:var(--gold);}
+  .hof-empty{
+    grid-column:1/-1; background:var(--charcoal); padding:56px 24px; text-align:center;
+    color:var(--khaki-dim); font-size:14px;
+  }
 
   /* ---------- støt / footer cta ---------- */
   .stot{
@@ -258,12 +348,6 @@
   }
   .stot h2{font-family:var(--font-display); text-transform:uppercase; font-size:clamp(30px,6vw,56px); line-height:1;}
   .stot p{color:rgba(246,243,236,0.7); max-width:480px; margin:16px auto 30px; font-size:15px; line-height:1.6;}
-  .mobilepay-box{
-    display:inline-flex; flex-direction:column; align-items:center; gap:4px;
-    border:1px solid var(--line); padding:20px 36px; border-radius:var(--radius); margin-top:8px;
-  }
-  .mobilepay-box .num{font-family:var(--font-display); font-size:30px; color:var(--gold); letter-spacing:0.02em;}
-  .mobilepay-box .lbl{font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--khaki-dim);}
 
   /* ---------- marquee / rullebånd ---------- */
   .marquee-section{padding:68px 0; border-top:1px solid var(--line);}
@@ -290,9 +374,9 @@
   </a>
   <div class="nav-links">
     <a href="#aktiviteter">Aktiviteter</a>
-    <a href="#taeller">Tæller</a>
-    <a href="#auktioner">Auktioner</a>
-    <a href="#stot">Støt</a>
+    <a href="#taeller">Indsamling</a>
+    <a href="#pakker">Bliv medvokser</a>
+    <a href="#hall-of-fame">Hall of Fame</a>
   </div>
 </nav>
 
@@ -306,12 +390,12 @@
   <div class="hero-scrim"></div>
   <div class="hero-inner">
     <img class="hero-logo" src="assets/logo.png" alt="Café Kaiser" onerror="this.remove();">
-    <div class="hero-kicker">Café Kaiser er med i Superdysten</div>
-    <h1 class="hero-title">For de børn, der har allermest brug for det</h1>
-    <p class="hero-sub">Vi samler ind til CoolUnites arbejde for alvorligt syge og udsatte børn. Vær med — kom forbi, byd på en auktion, eller støt direkte.</p>
+    <div class="hero-kicker">Café Kaiser er med i</div>
+    <h1 class="hero-title">Kaiser<span class="x">x</span>SuperDysten</h1>
+    <p class="hero-sub">Vi samler ind til CoolUnites arbejde for alvorligt syge og udsatte børn. Vær med — køb et blad til vores donationstræ, eller få jeres virksomhed med i træet.</p>
     <div class="hero-actions">
-      <a href="#aktiviteter" class="btn btn-khaki">Aktiviteter</a>
-      <a href="#auktioner" class="btn btn-outline">Auktioner</a>
+      <a href="#pakker" class="btn btn-khaki">Bliv medvokser</a>
+      <a href="#aktiviteter" class="btn btn-outline">Aktiviteter</a>
     </div>
   </div>
   <div class="scroll-cue" aria-hidden="true">
@@ -323,17 +407,17 @@
   <div class="wrap">
     <div class="support-grid">
       <div class="support-box">
-        <div class="mp-label">Doner via</div>
-        <div class="mp-num" id="mobilepayNum2">XXXX</div>
-        <div class="mp-sub">Swip til nummeret på MobilePay — hele beløbet går ubeskåret til CoolUnite.</div>
+        <div class="mp-label">Vores fokus</div>
+        <div class="mp-num">Donationstræet</div>
+        <div class="mp-sub">Ét træ i hver café og i centrene — og ét blad for hver donation.</div>
       </div>
       <div class="support-text">
         <div class="eyebrow">Sådan kan du støtte</div>
         <h2>Vær med, uanset hvordan du helst vil give</h2>
         <ul>
-          <li>Doner direkte via MobilePay på nummeret til venstre</li>
-          <li>Læg et bud på en af vores auktioner</li>
-          <li>Kig forbi en af vores 7 caféer i kampagneperioden</li>
+          <li>Køb et blad til træet, når du er forbi en af vores caféer</li>
+          <li>Få jeres virksomhed med i træet med en af vores tre pakker</li>
+          <li>Spis med på stegt flæsk-dagene, hvor en del af omsætningen går videre</li>
         </ul>
       </div>
     </div>
@@ -369,29 +453,80 @@
   </div>
 </div>
 
-<section id="auktioner">
+<section id="pakker">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <div class="eyebrow">Donationstræ til virksomheder</div>
+      <h2>Få træet til at vokse</h2>
+      <p style="margin-left:auto; margin-right:auto;">Vi inviterer virksomheder, samarbejdspartnere og privatpersoner med i træet. Vælg en pakke — og bliv en del af historien.</p>
+    </div>
+    <p class="pkg-pitch">Jo større en forskel I er med til at gøre, jo større en del af historien bliver I.</p>
+    <div class="pkg-grid" id="pkgGrid"><!-- fyldes af CONFIG.packages --></div>
+    <div class="pkg-note">
+      I <strong>alle</strong> pakker får I ét blad på alle vores træer — både i caféerne og i centrene.
+    </div>
+    <div class="pkg-cta">
+      <a href="#" id="pkgContactLink" class="btn btn-khaki">Kontakt os om en pakke</a>
+    </div>
+  </div>
+</section>
+
+<section id="traeet" class="tree-section">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
+      <div class="eyebrow">Vores donationstræ</div>
+      <h2>Se træet vokse</h2>
+      <p style="margin-left:auto; margin-right:auto;">Hvert guldblad er en virksomhed, der har doneret. Jo større donation, jo større blad. Tryk på et blad for at se hvem.</p>
+    </div>
+    <div class="tree-stage" id="treeStage">
+      <svg class="tree-svg" viewBox="0 0 600 470" role="img" aria-label="Donationstræ med guldblade">
+        <!-- Krone: overlappende cirkler giver den lobede silhuet -->
+        <g class="tree-canopy">
+          <circle cx="300" cy="150" r="98"/>
+          <circle cx="196" cy="178" r="86"/>
+          <circle cx="404" cy="178" r="86"/>
+          <circle cx="132" cy="222" r="66"/>
+          <circle cx="468" cy="222" r="66"/>
+          <circle cx="238" cy="236" r="80"/>
+          <circle cx="362" cy="236" r="80"/>
+          <circle cx="300" cy="228" r="86"/>
+        </g>
+        <!-- Stamme og grene -->
+        <path class="tree-trunk" d="M286 440 L286 268
+          Q286 236 258 214 Q232 194 200 186 Q236 190 262 206 Q286 221 290 246
+          L290 214 Q290 182 266 158 Q294 176 300 208 Q306 176 334 158
+          Q310 182 310 214 L310 246 Q314 221 338 206 Q364 190 400 186
+          Q368 194 342 214 Q314 236 314 268 L314 440 Z"/>
+        <path class="tree-trunk" d="M254 440 Q264 424 286 420 L314 420 Q336 424 346 440 Z"/>
+        <g id="treeLeaves"></g>
+      </svg>
+      <div class="tree-tip" id="treeTip"><div class="t-name"></div><div class="t-tier"></div></div>
+    </div>
+    <div class="tree-legend">
+      <span class="l-sm" id="lgSm"></span>
+      <span class="l-md" id="lgMd"></span>
+      <span class="l-lg" id="lgLg"></span>
+    </div>
+    <div class="tree-empty" id="treeEmpty"></div>
+  </div>
+</section>
+
+<section id="hall-of-fame">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Byd med</div>
-      <h2>Igangværende auktioner</h2>
-      <p>Højeste bud vinder — hele beløbet går til CoolUnite. Nye auktioner kommer løbende til.</p>
+      <div class="eyebrow">Hall of Fame</div>
+      <h2>Dem der får træet til at vokse</h2>
+      <p>Virksomheder og samarbejdspartnere, der har doneret til CoolUnite gennem vores donationstræ.</p>
     </div>
-    <div class="auction-list" id="auctionList"><!-- fyldes af CONFIG.auctions --></div>
-    <div class="auction-cta">
-      <a href="#" id="auctionAllLink" class="btn btn-outline">Se alle auktioner</a>
-    </div>
+    <div class="hof-grid" id="hofGrid"><!-- fyldes af CONFIG.hallOfFame --></div>
   </div>
 </section>
 
 <section id="stot" class="stot">
   <div class="wrap">
     <div class="eyebrow">Direkte støtte</div>
-    <h2>Støt indsamlingen</h2>
-    <p>Alt går ubeskåret til CoolUnite. Du kan donere direkte via MobilePay, eller lægge et bud i en af caféerne.</p>
-    <div class="mobilepay-box">
-      <div class="num" id="mobilepayNum">XXXX</div>
-      <div class="lbl">MobilePay</div>
-    </div>
+    <h2>Køb et blad</h2>
+    <p>Kom forbi en af vores caféer og køb et blad til donationstræet. Hele beløbet går ubeskåret til CoolUnite.</p>
   </div>
 </section>
 
@@ -416,7 +551,7 @@ const CONFIG = {
   },
 
   // Live tæller — indtastes manuelt hver morgen, da beløbet samles fra
-  // MobilePay, kassesystem og auktioner. Opdater kun "amount" løbende —
+  // salg i caféerne, donationstræet og virksomhedspakker. Opdater kun "amount" løbende —
   // teksten "Opdateres hverdag klokken 10:00" står fast på siden.
   counter: {
     amount: 0,          // kr. indsamlet indtil videre
@@ -430,44 +565,113 @@ const CONFIG = {
     {
       num: "01",
       title: "Stegt flæsk-dagene",
-      text: "26.–28. oktober og 2.–4. november går en del af omsætningen på stegt flæsk i alle syv caféer direkte til CoolUnite.",
-      tag: "26.–28. okt & 2.–4. nov",
+      text: "På seks aftalte dage går en del af omsætningen på stegt flæsk i alle vores caféer direkte til CoolUnite.",
+      tag: "6 dage",
       img: "assets/stegt-flaesk.jpg"
     },
     {
       num: "02",
-      title: "Social Run",
-      text: "6× 5 km løb, ét fra hver café, sen eftermiddag. Deltag og støt indsamlingen med dit løb.",
-      tag: "Alle 7 caféer",
-      img: "assets/run.jpg"
-    },
-    {
-      num: "03",
-      title: "Musik event",
-      text: "En aften med livemusik i caféen, hvor overskuddet fra billetter og bar går til CoolUnite.",
-      tag: "Event",
+      title: "Musik Bingo",
+      text: "Vi arbejder videre med idéen om en musik bingo-aften til fordel for CoolUnite. Mere info følger.",
+      tag: "På tegnebrættet",
       img: "assets/musik-bingo.jpg"
     },
     {
-      num: "04",
-      title: "Donations-træet",
-      text: "Køb et lille blad til vores donations-træ i caféen — hvert blad går ubeskåret til CoolUnite.",
-      tag: "I caféen",
+      num: "03",
+      title: "Donationstræet",
+      text: "Vores primære fokus. Gæster, virksomheder og samarbejdspartnere køber blade, der får træerne i caféer og centre til at vokse.",
+      tag: "Primært fokus",
       img: "assets/donations-trae.jpg"
     }
   ],
 
-  // Auktions-forhåndsvisning. "Se alle auktioner"-knappen linker til auctionAllUrl.
-  auctionAllUrl: "#",
-  auctions: [
-    { icon: "G", title: "Guldnavneskilt på dit bord", meta: "1 år · 6 caféer" },
-    { icon: "V", title: "Blandet vinkasse hver måned", meta: "1 år · 6 flasker/md" },
-    { icon: "B", title: "Brunch buffet for 2", meta: "1 gang/md i 1 år" },
-    { icon: "C", title: "Catering til 15 personer", meta: "Brunch buffet" }
+  // Donationspakker til virksomheder. Sæt "featured": true på den pakke
+  // I vil fremhæve. "contactUrl" er linket bag knappen under pakkerne
+  // (fx mailto:kontakt@cafekaiser.dk eller et link til en formular).
+  contactUrl: "#",
+  packages: [
+    {
+      leaf: "sm",
+      name: "Lille pakke",
+      title: "Lille Guldblad",
+      amount: "5.000",
+      perks: [
+        "Guldblad på træet",
+        "Logo på banner",
+        "Plads på Hall of Fame her på siden",
+        "Middag for 2 — hovedret, dessert, én drikkevare og én kaffe pr. person"
+      ]
+    },
+    {
+      leaf: "md",
+      name: "Medium pakke",
+      title: "Mellem Guldblad",
+      amount: "10.000",
+      featured: true,
+      perks: [
+        "Guldblad på træet",
+        "Logo på banner",
+        "Plads på Hall of Fame her på siden",
+        "Opslag på vores sociale medier",
+        "Middag for 4 — hovedret, dessert, én drikkevare og én kaffe pr. person"
+      ]
+    },
+    {
+      leaf: "lg",
+      name: "Stor pakke",
+      title: "Stort Guldblad",
+      amount: "25.000",
+      perks: [
+        "Guldblad på træet",
+        "Logo på banner",
+        "Plads på Hall of Fame her på siden",
+        "Opslag på vores sociale medier",
+        "Middag for 6 — hovedret, dessert, én drikkevare og én kaffe pr. person"
+      ]
+    }
   ],
 
-  // MobilePay-nummer vist under "Støt"
-  mobilepay: "XXXX",
+  // Hall of Fame — virksomheder der har doneret. Tilføj en post pr.
+  // virksomhed efterhånden som de kommer til. Hver post giver BÅDE et
+  // guldblad på det digitale træ OG et kort i Hall of Fame.
+  //   leaf: "sm" | "md" | "lg"  → bladets størrelse på træet
+  //   tier: teksten der vises, fx "Stort Guldblad"
+  //   img:  deres selvvalgte billede (logo, facade, mennesker), lagt i assets/
+  // Er listen tom, står træet bart og sektionen viser en "kommer snart"-besked.
+  hallOfFame: [
+    {
+      name: "Café Kaiser",
+      leaf: "lg",
+      tier: "Stort Guldblad",
+      img: "assets/cafe-kaiser.jpg",
+      text: "Vi lægger selv det første guldblad på træet — og går forrest i indsamlingen til CoolUnite.",
+      url: "https://cafekaiser.dk"
+    },
+    {
+      name: "RC Gruppen",
+      leaf: "lg",
+      tier: "Stort Guldblad",
+      img: "assets/rc-gruppen.jpg",
+      text: "RC Gruppen støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    {
+      name: "Din Tøjmand Hillerød",
+      leaf: "lg",
+      tier: "Stort Guldblad",
+      img: "assets/din-tojmand.jpg",
+      text: "Din Tøjmand Hillerød støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    // {
+    //   name: "Virksomhedens navn",
+    //   leaf: "lg",
+    //   tier: "Stort Guldblad",
+    //   img: "assets/virksomhed.jpg",
+    //   text: "Kort tekst om donationen.",
+    //   url: "https://virksomhed.dk"
+    // },
+  ],
 
   // Sponsor-logoer i rullebåndet. Brug enten et billede (img) eller
   // rent tekst-logo (text) hvis I ikke har en logofil endnu.
@@ -475,9 +679,7 @@ const CONFIG = {
     { img: "assets/Invita.png" },
     { img: "assets/brix.png" },
     { img: "assets/DSC.png" },
-    { img: "assets/nova.png" },
-    { img: "assets/royal.png" },
-    { img: "assets/oskar.png" }
+    { img: "assets/nova.png" }
     // Tilføj flere som: { img: "assets/firma.png" },
   ]
 };
@@ -516,21 +718,110 @@ document.getElementById('activityGrid').innerHTML = CONFIG.activities.map(a => `
   </div>
 `).join('');
 
-// Auctions
-document.getElementById('auctionList').innerHTML = CONFIG.auctions.map(a => `
-  <div class="auction-item">
-    <div class="auction-thumb">${a.icon}</div>
-    <div>
-      <h4>${a.title}</h4>
-      <div class="meta">${a.meta}</div>
-    </div>
+// Leaf icon (used in packages and Hall of Fame)
+const LEAF_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3c-8 0-14 4-15.5 10.5C3.6 17 5 20 7 21c.4-3 1.8-6 4.5-8.5C9.8 15 8.5 18 8.5 21H11c0-1 .2-2 .6-3C18 17 21 11 20 3z"/></svg>';
+
+// Packages
+document.getElementById('pkgGrid').innerHTML = CONFIG.packages.map(p => `
+  <div class="pkg${p.featured ? ' featured' : ''}">
+    <div class="pkg-leaf ${p.leaf}">${LEAF_SVG}</div>
+    <div class="pkg-name">${p.name}</div>
+    <div class="pkg-title">${p.title}</div>
+    <div class="pkg-amount">${p.amount}<span>kr.</span></div>
+    <ul>${p.perks.map(x => `<li>${x}</li>`).join('')}</ul>
   </div>
 `).join('');
-document.getElementById('auctionAllLink').href = CONFIG.auctionAllUrl;
+document.getElementById('pkgContactLink').href = CONFIG.contactUrl;
 
-// MobilePay
-document.getElementById('mobilepayNum').textContent = CONFIG.mobilepay;
-document.getElementById('mobilepayNum2').textContent = CONFIG.mobilepay;
+// Digitalt donationstræ
+(function renderTree(){
+  const stage = document.getElementById('treeStage');
+  const leavesG = document.getElementById('treeLeaves');
+  const tip = document.getElementById('treeTip');
+  const empty = document.getElementById('treeEmpty');
+  const donors = CONFIG.hallOfFame;
+
+  // Legend
+  const legend = { lgSm: ['sm','5.000 kr.'], lgMd: ['md','10.000 kr.'], lgLg: ['lg','25.000 kr.'] };
+  Object.entries(legend).forEach(([id, [cls, label]]) => {
+    document.getElementById(id).innerHTML = LEAF_SVG + '<span>' + label + '</span>';
+  });
+
+  if (!donors.length) {
+    empty.textContent = 'Træet er stadig bart — de første guldblade er på vej.';
+    return;
+  }
+
+  // Deterministisk placering: bladene fordeles jævnt i kronen, så samme
+  // rækkefølge i CONFIG altid giver samme træ.
+  const SIZES = { sm: 15, md: 21, lg: 29 };
+  const cx = 300, cy = 196, rx = 196, ry = 104;
+  const n = donors.length;
+  const golden = Math.PI * (3 - Math.sqrt(5));
+
+  donors.forEach((d, i) => {
+    const tier = d.leaf || 'md';
+    const size = SIZES[tier] || SIZES.md;
+    // Sunflower-fordeling giver en naturlig, ikke-overlappende spredning
+    const r = Math.sqrt((i + 0.6) / n);
+    const a = i * golden;
+    const x = cx + Math.cos(a) * r * rx;
+    const y = cy + Math.sin(a) * r * ry;
+    const rot = (i * 47) % 360;
+
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'tree-leaf tier-' + tier);
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', d.name + (d.tier ? ' — ' + d.tier : ''));
+    g.style.animationDelay = (i * 0.06) + 's';
+    g.innerHTML = '<g transform="translate(' + (x - size/2) + ',' + (y - size/2) + ') rotate(' + rot + ',' + size/2 + ',' + size/2 + ') scale(' + (size/24) + ')">' +
+                  '<path d="M20 3c-8 0-14 4-15.5 10.5C3.6 17 5 20 7 21c.4-3 1.8-6 4.5-8.5C9.8 15 8.5 18 8.5 21H11c0-1 .2-2 .6-3C18 17 21 11 20 3z"/></g>';
+
+    function show(){
+      tip.querySelector('.t-name').textContent = d.name;
+      tip.querySelector('.t-tier').textContent = d.tier || '';
+      const box = stage.getBoundingClientRect();
+      const pt = g.getBoundingClientRect();
+      tip.style.left = (pt.left - box.left + pt.width/2) + 'px';
+      tip.style.top  = (pt.top  - box.top) + 'px';
+      tip.classList.add('on');
+    }
+    function hide(){ tip.classList.remove('on'); }
+
+    g.addEventListener('mouseenter', show);
+    g.addEventListener('mouseleave', hide);
+    g.addEventListener('focus', show);
+    g.addEventListener('blur', hide);
+    // Tap/klik hopper ned til virksomhedens kort i Hall of Fame
+    g.addEventListener('click', () => {
+      const card = document.getElementById('hof-' + i);
+      if (card) card.scrollIntoView({ behavior:'smooth', block:'center' });
+    });
+
+    leavesG.appendChild(g);
+  });
+})();
+
+// Hall of Fame
+const hofGrid = document.getElementById('hofGrid');
+if (!CONFIG.hallOfFame.length) {
+  hofGrid.innerHTML = '<div class="hof-empty">De første guldblade er på vej — her viser vi de virksomheder, der er med til at få træet til at vokse.</div>';
+} else {
+  hofGrid.innerHTML = CONFIG.hallOfFame.map((h, i) => `
+    <div class="hof-card" id="hof-${i}">
+      <div class="hof-media${h.img ? '' : ' is-empty'}">
+        ${h.img ? `<img src="${h.img}" alt="${h.name}" loading="lazy" onerror="this.closest('.hof-media').classList.add('is-empty'); this.remove();">` : ''}
+      </div>
+      <div class="hof-body">
+        <div class="hof-tier">${LEAF_SVG}${h.tier || ''}</div>
+        <h4>${h.name}</h4>
+        <p>${h.text || ''}</p>
+        ${h.url ? `<a class="hof-link" href="${h.url}" target="_blank" rel="noopener">Besøg hjemmeside &rarr;</a>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
 
 // Sponsor marquee (duplicated for seamless loop)
 function sponsorHTML(s){
