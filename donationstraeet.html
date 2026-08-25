@@ -118,6 +118,22 @@
   .pkg-pitch::before,.pkg-pitch::after{content:"”";color:var(--khaki);font-size:1.2em;}
   .pkg-cta{text-align:center;margin-top:36px;}
 
+  .contact-box{
+    margin-top:40px; background:var(--charcoal); border:1px solid var(--line);
+    border-radius:var(--radius); padding:38px 28px; text-align:center;
+  }
+  .contact-box h3{font-family:var(--font-display); text-transform:uppercase; font-size:clamp(22px,3.6vw,32px); line-height:1.05;}
+  .contact-box .c-lead{color:rgba(246,243,236,.75); max-width:520px; margin:16px auto 0; font-size:15px; line-height:1.6;}
+  .contact-box .c-tag{display:block; margin-top:10px; color:var(--gold); font-weight:700;}
+  .contact-label{margin-top:30px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--khaki-dim);}
+  .contact-people{display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; max-width:620px; margin-left:auto; margin-right:auto;}
+  @media(min-width:640px){.contact-people{grid-template-columns:1fr 1fr;}}
+  .person{border:1px solid var(--line); border-radius:var(--radius); padding:20px 18px; transition:border-color .2s ease;}
+  .person:hover{border-color:var(--khaki-dim);}
+  .person .p-name{font-size:17px; font-weight:700;}
+  .person a{display:block; margin-top:8px; font-size:14px; color:var(--khaki); text-decoration:none; transition:color .2s;}
+  .person a:hover{color:var(--gold);}
+
   /* hall of fame */
   .hof-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
   @media(min-width:640px){.hof-grid{grid-template-columns:1fr 1fr;}}
@@ -140,7 +156,15 @@
   /* gæste-cta */
   .cta{background:radial-gradient(ellipse 70% 100% at 50% 0%,rgba(185,172,122,.14),transparent 65%),var(--black);text-align:center;border-top:1px solid var(--line);}
   .cta h2{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(28px,5.5vw,50px);line-height:1;}
-  .cta p{color:rgba(246,243,236,.7);max-width:480px;margin:16px auto 0;font-size:15px;line-height:1.6;}
+  .cta p{color:rgba(246,243,236,.7);max-width:480px;margin:16px auto 28px;font-size:15px;line-height:1.6;}
+
+  .mobilepay-box{display:inline-flex;flex-direction:column;align-items:center;gap:6px;border:1px solid var(--line);background:var(--charcoal);padding:26px 44px;border-radius:var(--radius);margin-top:6px;transition:border-color .25s ease,transform .25s ease;}
+  .mobilepay-box:hover{border-color:var(--khaki-dim);transform:translateY(-2px);}
+  .mobilepay-box .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--khaki-dim);}
+  .mobilepay-box .num{font-family:var(--font-display);font-size:clamp(34px,6vw,46px);color:var(--gold);letter-spacing:.02em;line-height:1;}
+  .stot-or{margin:30px auto 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--khaki-dim);display:flex;align-items:center;gap:14px;max-width:340px;}
+  .stot-or::before,.stot-or::after{content:"";flex:1;height:1px;background:var(--line);}
+  .stot-alt{margin-top:22px;color:rgba(246,243,236,.7);font-size:15px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto;}
 
   footer{padding:34px 0;text-align:center;font-size:12px;color:var(--khaki-dim);border-top:1px solid var(--line);}
   footer a{text-decoration:underline;text-underline-offset:3px;}
@@ -229,8 +253,11 @@
     <div class="pkg-note">
       <strong>Alle virksomhedspakker</strong> giver ét guldblad på alle vores donationstræer — både i caféerne og i centrene.
     </div>
-    <div class="pkg-cta">
-      <a href="#" id="pkgContactLink" class="btn btn-khaki">Kontakt os om en pakke</a>
+    <div class="contact-box" id="kontakt">
+      <h3 id="contactTitle"></h3>
+      <p class="c-lead"><span id="contactLead"></span><span class="c-tag" id="contactTag"></span></p>
+      <div class="contact-label">Kontakt</div>
+      <div class="contact-people" id="contactPeople"></div>
     </div>
   </div>
 </section>
@@ -246,11 +273,17 @@
   </div>
 </section>
 
-<section class="cta">
+<section class="cta" id="stot">
   <div class="wrap">
     <div class="eyebrow">Er du gæst?</div>
-    <h2>Køb et blad</h2>
-    <p>Kom forbi en af vores caféer og køb et blad til donationstræet. Hele beløbet går ubeskåret til CoolUnite.</p>
+    <h2>Støt indsamlingen</h2>
+    <p>Doner direkte fra mobilen — hele beløbet går ubeskåret til CoolUnite.</p>
+    <div class="mobilepay-box">
+      <div class="lbl">MobilePay</div>
+      <div class="num" id="mobilepayNum">XXXXX</div>
+    </div>
+    <div class="stot-or">Eller</div>
+    <p class="stot-alt">Kom forbi en af vores caféer og køb et blad til donationstræet.</p>
   </div>
 </section>
 
@@ -276,8 +309,20 @@ const CONFIG = {
     "Gæster kan købe et lille blad, når de er forbi. Virksomheder og samarbejdspartnere kan gå med i træet gennem en af vores tre pakker og få deres eget guldblad — både på de fysiske træer og her på siden."
   ],
 
-  // Link bag knappen under pakkerne (fx mailto:kontakt@cafekaiser.dk)
-  contactUrl: "#",
+  // MobilePay-nummer i støtte-sektionen nederst.
+  mobilepay: "XXXXX",
+
+  // Kontaktblok under pakkerne. Pakkerne kan kun købes ved henvendelse,
+  // så her står teksten og de personer, virksomheder skal fat i.
+  contact: {
+    title: "Skal I med på holdet?",
+    lead: "Jeres støtte er med til at få træerne til at vokse – og bringer os tættere på målet om at gøre så stor en forskel som muligt.",
+    tag: "#hvertbladtæller",
+    people: [
+      { name: "Rasmus",    phone: "30 24 93 02", email: "rasmus@cafekaiser.dk" },
+      { name: "Christian", phone: "30 25 93 02", email: "christian@cafekaiser.dk" }
+    ]
+  },
 
   packages: [
     {
@@ -371,7 +416,20 @@ document.getElementById('pkgGrid').innerHTML = CONFIG.packages.map(p => `
     <ul>${p.perks.map(x => `<li>${x}</li>`).join('')}</ul>
   </div>
 `).join('');
-document.getElementById('pkgContactLink').href = CONFIG.contactUrl;
+// MobilePay
+document.getElementById('mobilepayNum').textContent = CONFIG.mobilepay;
+
+// Kontakt
+document.getElementById('contactTitle').textContent = CONFIG.contact.title;
+document.getElementById('contactLead').textContent = CONFIG.contact.lead;
+document.getElementById('contactTag').textContent = CONFIG.contact.tag;
+document.getElementById('contactPeople').innerHTML = CONFIG.contact.people.map(p => `
+  <div class="person">
+    <div class="p-name">${p.name}</div>
+    ${p.phone ? `<a href="tel:${p.phone.replace(/\s/g,'')}">${p.phone}</a>` : ''}
+    ${p.email ? `<a href="mailto:${p.email}">${p.email}</a>` : ''}
+  </div>
+`).join('');
 
 // Tree
 (function renderTree(){
