@@ -51,6 +51,9 @@
 
   /* ---------- utility ---------- */
   .wrap{max-width:1120px; margin:0 auto; padding:0 20px;}
+  .narrow-col{max-width:760px;}
+  .prose p{font-size:16px; line-height:1.7; color:rgba(246,243,236,0.8); margin-bottom:18px;}
+  .prose p:last-child{margin-bottom:0;}
   .eyebrow{
     font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
     color:var(--khaki); font-weight:700;
@@ -121,7 +124,7 @@
   }
   .hero-title{
     font-family:var(--font-display); text-transform:uppercase;
-    font-size:clamp(34px, 9vw, 84px); line-height:0.98; letter-spacing:-0.01em;
+    font-size:clamp(30px, 6.4vw, 62px); line-height:0.98; letter-spacing:-0.01em;
     margin:0 auto 18px; max-width:920px;
     opacity:0; animation:riseIn .8s ease .22s forwards;
   }
@@ -285,7 +288,7 @@
   .tree-leaf{
     cursor:pointer; transform-box:fill-box; transform-origin:center;
     transition:transform .25s ease, filter .25s ease;
-    animation:leafIn .6s ease backwards;
+    
   }
   .tree-leaf:hover, .tree-leaf:focus{transform:scale(1.25); outline:none;}
   .tree-leaf:focus-visible{filter:drop-shadow(0 0 4px var(--cream));}
@@ -294,6 +297,57 @@
   .tree-leaf.tier-md path{fill:#d7b654;}
   .tree-leaf.tier-lg path{fill:#eccd72;}
   @keyframes leafIn{ from{opacity:0; transform:scale(0.3) translateY(-10px);} to{opacity:1;} }
+  /* vækst-animation */
+  .tree-canopy circle{transform-box:fill-box; transform-origin:center bottom; transform:scale(0); opacity:0;}
+  .tree-trunk{transform-box:fill-box; transform-origin:center bottom; transform:scaleY(0);}
+  .tree-grown .tree-trunk{animation:growTrunk 1s cubic-bezier(.22,.9,.3,1) forwards;}
+  .tree-grown .tree-canopy circle{animation:growCanopy .85s cubic-bezier(.34,1.4,.5,1) forwards;}
+  .tree-grown .tree-canopy circle:nth-child(1){animation-delay:.55s;}
+  .tree-grown .tree-canopy circle:nth-child(2){animation-delay:.72s;}
+  .tree-grown .tree-canopy circle:nth-child(3){animation-delay:.72s;}
+  .tree-grown .tree-canopy circle:nth-child(4){animation-delay:.86s;}
+  .tree-grown .tree-canopy circle:nth-child(5){animation-delay:.86s;}
+  .tree-grown .tree-canopy circle:nth-child(6){animation-delay:.65s;}
+  .tree-grown .tree-canopy circle:nth-child(7){animation-delay:.65s;}
+  .tree-grown .tree-canopy circle:nth-child(8){animation-delay:.6s;}
+  @keyframes growTrunk{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+  @keyframes growCanopy{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .tree-leaf{opacity:0;}
+  .tree-grown .tree-leaf{animation:leafPop .55s cubic-bezier(.34,1.5,.5,1) forwards;}
+  .tree-leaf.done{opacity:1; animation:none !important;}
+  @keyframes leafPop{
+    0%{opacity:0; transform:scale(0) rotate(-25deg);}
+    70%{opacity:1; transform:scale(1.18) rotate(4deg);}
+    100%{opacity:1; transform:scale(1) rotate(0);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .tree-canopy circle{transform:none; opacity:1;}
+    .tree-trunk{transform:none;}
+    .tree-leaf{opacity:1;}
+    .tree-grown .tree-trunk, .tree-grown .tree-canopy circle, .tree-grown .tree-leaf{animation:none;}
+  }
+
+  /* ledige pladser — pulserende "spøgelsesblade" */
+  .tree-ghost{cursor:pointer; transform-box:fill-box; transform-origin:center; opacity:0;}
+  .tree-ghost path{
+    fill:none; stroke:var(--khaki); stroke-width:1.6; vector-effect:non-scaling-stroke;
+  }
+  .tree-grown .tree-ghost{animation:ghostPulse 3.6s ease-in-out infinite;}
+  @keyframes ghostPulse{
+    0%,100%{opacity:.16; transform:scale(.92);}
+    50%    {opacity:.5;  transform:scale(1.06);}
+  }
+  .tree-ghost:hover, .tree-ghost:focus{
+    animation-play-state:paused !important; opacity:1 !important; outline:none;
+  }
+  .tree-ghost:hover path, .tree-ghost:focus path{stroke:var(--gold); stroke-width:2.2;}
+  .tree-tip.is-ghost{border-color:var(--gold);}
+  .tree-tip.is-ghost .t-name{color:var(--gold);}
+  @media (prefers-reduced-motion:reduce){
+    .tree-ghost{opacity:.3;}
+    .tree-grown .tree-ghost{animation:none;}
+  }
+
   .tree-tip{
     position:absolute; pointer-events:none; z-index:5; opacity:0;
     background:var(--black); border:1px solid var(--khaki-dim); border-radius:var(--radius);
@@ -428,9 +482,9 @@
   <div class="hero-scrim"></div>
   <div class="hero-inner">
     <img class="hero-logo" src="assets/logo.png" alt="Café Kaiser" onerror="this.remove();">
-    <div class="hero-kicker">Café Kaiser er med i</div>
-    <h1 class="hero-title">Kaiser<span class="x">x</span>SuperDysten</h1>
-    <p class="hero-sub">Vi samler ind til CoolUnites arbejde for alvorligt syge og udsatte børn. Vær med — køb et blad til vores donationstræ, eller få jeres virksomhed med i træet.</p>
+    <div class="hero-kicker">Kaiser <em style="font-style:italic;">x</em> SuperDysten</div>
+    <h1 class="hero-title">Sammen om at gøre en forskel for de børn, der har mest brug for det</h1>
+    <p class="hero-sub">I uge 44 og 45 samler vi ind til velgørenhedsorganisationen CoolUnites vigtige arbejde for syge og udsatte børn — med fokus på fællesskab, sammenhold og det gode måltid.</p>
     <div class="hero-actions">
       <a href="#stot" class="btn btn-khaki">Støt her</a>
       <a href="#aktiviteter" class="btn btn-outline">Aktiviteter</a>
@@ -441,23 +495,15 @@
   </div>
 </header>
 
-<section class="support-section" id="stot-intro">
-  <div class="wrap">
-    <div class="support-grid">
-      <div class="support-box">
-        <div class="mp-label">Vores fokus</div>
-        <div class="mp-num">Donationstræet</div>
-        <div class="mp-sub">Ét træ i hver café og i centrene — og ét blad for hver donation.</div>
-      </div>
-      <div class="support-text">
-        <div class="eyebrow">Sådan kan du støtte</div>
-        <h2>Vær med, uanset hvordan du helst vil give</h2>
-        <ul>
-          <li>Køb et blad til træet, når du er forbi en af vores caféer</li>
-          <li>Få jeres virksomhed med i træet med en af vores tre pakker</li>
-          <li>Spis med på stegt flæsk-dagene, hvor en del af omsætningen går videre</li>
-        </ul>
-      </div>
+<section id="om">
+  <div class="wrap narrow-col">
+    <div class="section-head">
+      <div class="eyebrow">Om indsamlingen</div>
+      <h2>Vi vil mere end at samle mennesker omkring bordet</h2>
+    </div>
+    <div class="prose">
+      <p>Café Kaiser er i år udvalgt til at være med i SuperDysten — CoolUnites landsdækkende indsamlingskonkurrence i samarbejde med NOVA. Fra den 26. oktober til 8. november samler vi ind til syge og udsatte børn i Danmark — blandt andet alvorligt syge børn på hospice og deres familier.</p>
+      <p>For os handler det om at gøre en forskel for børn og familier, der står i en situation, ingen burde stå i. Derfor har vi sat os for at samle så mange penge ind som overhovedet muligt på de 14 dage, indsamlingen varer. Det er en stor ambition, og vi ved, at vi kun kan nå så langt, hvis vi gør det i fællesskab.</p>
     </div>
   </div>
 </section>
@@ -465,9 +511,9 @@
 <section id="aktiviteter">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Sådan er vi med</div>
-      <h2>Aktiviteter i kampagnen</h2>
-      <p>Alle vores caféer deltager. Her er de aktiviteter vi kører for at samle mest muligt ind til CoolUnite.</p>
+      <div class="eyebrow">Sammen gør vi en forskel</div>
+      <h2>Sådan kan du være med</h2>
+      <p>Der er flere måder at støtte op på – og hver eneste tæller. Flere små bidrag kan blive til noget stort. Se, hvordan du kan være med til at gøre en forskel for syge og udsatte børn.</p>
     </div>
   </div>
   <div class="wrap">
@@ -485,7 +531,12 @@
 </section>
 
 <div class="marquee-section">
-  <div class="marquee-label">Tak til vores sponsorer</div>
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto;max-width:620px;margin-bottom:32px;">
+      <h2 style="font-size:clamp(22px,3.6vw,32px);">De har været med til at gøre en forskel</h2>
+      <p style="margin-left:auto;margin-right:auto;">Stort tak til alle vores samarbejdspartnere, der har støttet op om indsamlingen.</p>
+    </div>
+  </div>
   <div class="marquee">
     <div class="marquee-track" id="marqueeTrack"><!-- fyldes af CONFIG.sponsors, duplikeret 2x --></div>
   </div>
@@ -494,11 +545,10 @@
 <section id="pakker">
   <div class="wrap">
     <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
-      <div class="eyebrow">Donationstræ til virksomheder</div>
-      <h2>Få træet til at vokse</h2>
-      <p style="margin-left:auto; margin-right:auto;">Vi inviterer virksomheder, samarbejdspartnere og privatpersoner med i træet. Vælg en pakke — og bliv en del af historien.</p>
+      <div class="eyebrow">Guldbladene</div>
+      <h2>Hvilket blad skal være jeres?</h2>
+      <p style="margin-left:auto; margin-right:auto;">Vi har tre forskellige guldblade, så I kan vælge den måde, I har lyst til at være med på. Fælles for dem alle er, at jeres støtte er med til at få træet til at vokse – og hjælpe os med at samle endnu mere ind.</p>
     </div>
-    <p class="pkg-pitch">Jo større en forskel I er med til at gøre, jo større en del af historien bliver I.</p>
     <div class="pkg-grid" id="pkgGrid"><!-- fyldes af CONFIG.packages --></div>
     <div class="pkg-note">
       <strong>Alle virksomhedspakker</strong> giver ét guldblad på alle vores donationstræer — både i caféerne og i centrene.
@@ -515,9 +565,9 @@
 <section id="traeet" class="tree-section">
   <div class="wrap">
     <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;">
-      <div class="eyebrow">Vores donationstræ</div>
-      <h2>Se træet vokse</h2>
-      <p style="margin-left:auto; margin-right:auto;">Hvert guldblad er en virksomhed, der har doneret. Jo større donation, jo større blad. Tryk på et blad for at se hvem.</p>
+      <div class="eyebrow">#hvertbladtæller</div>
+      <h2>Få træet til at vokse</h2>
+      <p style="margin-left:auto; margin-right:auto;">Et træ vokser ikke af ét blad. Det vokser, når mange vælger at være med. Derfor inviterer vi virksomheder og samarbejdspartnere til at sætte deres eget guldblad på træet og blive en del af vores fælles indsats for syge og udsatte børn.</p>
     </div>
     <div class="tree-stage" id="treeStage">
       <svg class="tree-svg" viewBox="0 0 600 470" role="img" aria-label="Donationstræ med guldblade">
@@ -549,6 +599,9 @@
       <span class="l-lg" id="lgLg"></span>
     </div>
     <div class="tree-empty" id="treeEmpty"></div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#hall-of-fame" class="btn btn-outline">Se, hvem der får træet til at vokse</a>
+    </div>
   </div>
 </section>
 
@@ -557,7 +610,7 @@
     <div class="section-head">
       <div class="eyebrow">Hall of Fame</div>
       <h2>Dem der får træet til at vokse</h2>
-      <p>Virksomheder og samarbejdspartnere, der har doneret til CoolUnite gennem vores donationstræ.</p>
+      <p>Mød de mennesker og virksomheder, der har doneret til indsamlingen gennem vores donationstræ.</p>
     </div>
     <div class="hof-grid" id="hofGrid"><!-- fyldes af CONFIG.hallOfFame --></div>
   </div>
@@ -611,18 +664,18 @@ const CONFIG = {
   activities: [
     {
       num: "01",
-      title: "Stegt flæsk-dagene",
-      text: "På seks aftalte dage går en del af omsætningen på stegt flæsk i alle vores caféer direkte til CoolUnite.",
-      tag: "6 dage",
+      title: "Stegt flæsk-dage på caféerne",
+      text: "Spis dig mæt – og vær med til at gøre en forskel. Mandag til onsdag fra kl. 16 i uge 44 og 45 går hele omsætningen fra vores stegt flæsk ad libitum ubeskåret til indsamlingen.",
+      tag: "Uge 44 & 45 · fra kl. 16",
       img: "assets/stegt-flaesk.jpg",
       url: "stegt-flaesk.html"
     },
     {
       num: "02",
       title: "Donationstræet",
-      text: "Vores primære fokus. Gæster, virksomheder og samarbejdspartnere køber blade, der får træerne i caféer og centre til at vokse.",
-      tag: "Primært fokus",
-      img: "assets/tre.png",
+      text: "Et blad koster 25 kr. – men tænk, hvad hundredvis af blade kan blive til. Køb et blad, hæng det på træet, og vær med til at få vores donationstræer til at vokse.",
+      tag: "25 kr. pr. blad",
+      img: "assets/donations-trae.jpg",
       url: "donationstraeet.html"
     }
   ],
@@ -633,7 +686,7 @@ const CONFIG = {
   // Kontaktblok under pakkerne. Pakkerne kan kun købes ved henvendelse,
   // så her står teksten og de personer, virksomheder skal fat i.
   contact: {
-    title: "Skal I med på holdet?",
+    title: "Sammen kan vi få træerne til at vokse",
     lead: "Jeres støtte er med til at få træerne til at vokse – og bringer os tættere på målet om at gøre så stor en forskel som muligt.",
     tag: "#hvertbladtæller",
     people: [
@@ -688,6 +741,11 @@ const CONFIG = {
     }
   ],
 
+  // Ledige pladser på træet: antal pulserende "tomme" blade der viser,
+  // at der er plads til flere. Sæt til 0 for at slå dem fra.
+  ghostLeaves: 5,
+  ghostText: "Skal jeres hænge her?",
+
   // Hall of Fame — virksomheder der har doneret. Tilføj en post pr.
   // virksomhed efterhånden som de kommer til. Hver post giver BÅDE et
   // guldblad på det digitale træ OG et kort i Hall of Fame.
@@ -697,37 +755,82 @@ const CONFIG = {
   // Er listen tom, står træet bart og sektionen viser en "kommer snart"-besked.
   hallOfFame: [
     {
-      name: "Café Kaiser",
+      name: "Brix",
       leaf: "lg",
       tier: "Stort Guldblad",
-      img: "assets/cafe-kaiser.jpg",
-      text: "Vi lægger selv det første guldblad på træet — og går forrest i indsamlingen til CoolUnite.",
-      url: "https://cafekaiser.dk"
-    },
-    {
-      name: "RC Gruppen",
-      leaf: "lg",
-      tier: "Stort Guldblad",
-      img: "assets/rc-gruppen.jpg",
-      text: "RC Gruppen støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/brix.png",
+      text: "Brix støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Din Tøjmand Hillerød",
+      name: "William Smith Tømrermester",
       leaf: "lg",
       tier: "Stort Guldblad",
-      img: "assets/din-tojmand.jpg",
-      text: "Din Tøjmand Hillerød støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/william-smith.jpg",
+      text: "William Smith Tømrermester støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
-    // {
-    //   name: "Virksomhedens navn",
-    //   leaf: "lg",
-    //   tier: "Stort Guldblad",
-    //   img: "assets/virksomhed.jpg",
-    //   text: "Kort tekst om donationen.",
-    //   url: "https://virksomhed.dk"
-    // },
+    {
+      name: "Østergård A/S",
+      leaf: "lg",
+      tier: "Stort Guldblad",
+      img: "assets/ostergaard.jpg",
+      text: "Østergård A/S støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    {
+      name: "Malerfirmaet Falster",
+      leaf: "sm",
+      tier: "Lille Guldblad",
+      img: "assets/malerfirmaet-falster.jpg",
+      text: "Malerfirmaet Falster støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    {
+      name: "Invita",
+      leaf: "sm",
+      tier: "Lille Guldblad",
+      img: "assets/Invita.png",
+      text: "Invita støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+
+    // ---- Beløb endnu ikke bekræftet. Ret "leaf" og "tier", når I ved det:
+    //      5.000 → leaf: "sm", tier: "Lille Guldblad"
+    //     10.000 → leaf: "md", tier: "Mellem Guldblad"
+    //     15.000 → leaf: "lg", tier: "Stort Guldblad"
+    {
+      name: "Murerfirma Holm & Søn",
+      leaf: "md",
+      tier: "Guldblad",
+      img: "assets/holm-og-son.jpg",
+      text: "Murerfirma Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    {
+      name: "Fætter VVS",
+      leaf: "md",
+      tier: "Guldblad",
+      img: "assets/faetter-vvs.jpg",
+      text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    {
+      name: "HHM",
+      leaf: "md",
+      tier: "Guldblad",
+      img: "assets/hhm.jpg",
+      text: "HHM støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    },
+    {
+      name: "Børge Nielsen",
+      leaf: "md",
+      tier: "Guldblad",
+      img: "assets/borge-nielsen.jpg",
+      text: "Børge Nielsen støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""
+    }
   ],
 
   // Sponsor-logoer i rullebåndet. Brug enten et billede (img) eller
@@ -871,6 +974,76 @@ document.getElementById('contactPeople').innerHTML = CONFIG.contact.people.map(p
     });
 
     leavesG.appendChild(g);
+  });
+
+
+  // ---- Ledige pladser: pulserende blade der inviterer til at være med ----
+  const GHOSTS = CONFIG.ghostLeaves === undefined ? 5 : CONFIG.ghostLeaves;
+  const ghostText = CONFIG.ghostText || 'Skal jeres hænge her?';
+  const total = n + GHOSTS;
+
+  for (let k = 0; k < GHOSTS; k++) {
+    const i = n + k;                       // fortsætter samme spiral som de rigtige blade
+    const size = 21;
+    const r = Math.sqrt((i + 0.6) / total);
+    const a = i * golden;
+    const x = cx + Math.cos(a) * r * rx;
+    const y = cy + Math.sin(a) * r * ry;
+    const rot = (i * 47) % 360;
+
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'tree-ghost');
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', ghostText);
+    g.style.animationDelay = (k * 0.7) + 's';
+    g.innerHTML = '<g transform="translate(' + (x - size/2) + ',' + (y - size/2) + ') rotate(' + rot + ',' + size/2 + ',' + size/2 + ') scale(' + (size/24) + ')">' +
+                  '<path d="M20 3c-8 0-14 4-15.5 10.5C3.6 17 5 20 7 21c.4-3 1.8-6 4.5-8.5C9.8 15 8.5 18 8.5 21H11c0-1 .2-2 .6-3C18 17 21 11 20 3z"/></g>';
+
+    function gshow(){
+      tip.querySelector('.t-name').textContent = ghostText;
+      tip.querySelector('.t-tier').textContent = 'Bliv en del af træet';
+      const box = stage.getBoundingClientRect();
+      const pt = g.getBoundingClientRect();
+      tip.style.left = (pt.left - box.left + pt.width/2) + 'px';
+      tip.style.top  = (pt.top  - box.top) + 'px';
+      tip.classList.add('on', 'is-ghost');
+    }
+    function ghide(){ tip.classList.remove('on', 'is-ghost'); }
+
+    g.addEventListener('mouseenter', gshow);
+    g.addEventListener('mouseleave', ghide);
+    g.addEventListener('focus', gshow);
+    g.addEventListener('blur', ghide);
+    g.addEventListener('click', () => {
+      const target = document.getElementById('pakker');
+      if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+
+    leavesG.appendChild(g);
+  }
+
+  // Start væksten når træet scrolles ind i billedet
+  const svg = stage.querySelector('.tree-svg');
+  const LEAF_START = 1.15;   // sekunder — bladene starter efter kronen
+  const LEAF_STEP  = 0.12;   // sekunder mellem hvert blad
+  leavesG.querySelectorAll('.tree-leaf').forEach((el, i) => {
+    el.style.animationDelay = (LEAF_START + i * LEAF_STEP) + 's';
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    svg.classList.add('tree-grown');
+  } else {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { svg.classList.add('tree-grown'); obs.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(stage);
+  }
+
+  leavesG.querySelectorAll('.tree-leaf').forEach(el => {
+    el.addEventListener('animationend', () => el.classList.add('done'), { once:true });
   });
 })();
 
