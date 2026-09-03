@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Donationstræet — Kaiser X SuperDysten</title>
-<meta name="description" content="Køb et blad til Café Kaisers donationstræ, eller få jeres virksomhed med i træet. Hele beløbet går til CoolUnite.">
+<meta name="description" content="Ingen kan få træet til at vokse alene. Køb et blad for 25 kr. på din lokale Café Kaiser — hele beløbet går til CoolUnite.">
 
 <!--
 =====================================================================
@@ -68,6 +68,22 @@
   .section-head p{color:rgba(246,243,236,.68);margin-top:14px;font-size:15px;line-height:1.6;}
   .prose p{font-size:16px;line-height:1.7;color:rgba(246,243,236,.8);margin-bottom:18px;}
   .prose p:last-child{margin-bottom:0;}
+
+  .alt-band{background:var(--charcoal);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .prose strong{color:var(--cream);font-weight:700;}
+  .prose .pull{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(18px,2.4vw,23px);line-height:1.45;color:var(--cream);border-left:2px solid var(--khaki);padding-left:20px;margin-top:28px;}
+  .inline-link{color:var(--khaki);text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+  .inline-link:hover{color:var(--gold);}
+  .sub-block{margin-top:34px;border-top:1px solid var(--line);padding-top:28px;}
+  .sub-block h3{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(18px,2.8vw,24px);margin-bottom:12px;}
+  .sub-block p{font-size:16px;line-height:1.7;color:rgba(246,243,236,.8);}
+  .video-frame{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,var(--charcoal-2),var(--black));aspect-ratio:16/9;}
+  .video-frame video{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;}
+  .video-frame .video-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--khaki-dim);z-index:0;}
+  .video-frame.is-empty video{display:none;}
+  .wide-image{aspect-ratio:21/9;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,var(--charcoal-2),var(--black));position:relative;}
+  .wide-image img{width:100%;height:100%;object-fit:cover;}
+  .wide-image.is-empty::after{content:"Billede mangler";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--khaki-dim);}
 
   /* træ */
   .tree-section{background:var(--charcoal);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
@@ -237,8 +253,8 @@
   </div>
   <div class="page-hero-scrim"></div>
   <div class="page-hero-inner">
-    <div class="eyebrow">Aktivitet 02</div>
-    <h1>Donationstræet</h1>
+    <div class="eyebrow">#hvertbladtæller</div>
+    <h1>Ingen kan få træet til at vokse alene — men sammen kan vi</h1>
     <p id="pageIntro"></p>
   </div>
 </header>
@@ -246,10 +262,80 @@
 <section>
   <div class="wrap narrow">
     <div class="section-head">
-      <div class="eyebrow">Sådan virker det</div>
-      <h2 id="aboutTitle"></h2>
+      <div class="eyebrow">Tanken bag træet</div>
+      <h2>Det hele begynder med et blad</h2>
     </div>
-    <div class="prose" id="aboutBody"></div>
+    <div class="video-frame" id="videoFrame">
+      <video id="treeVideo" controls playsinline poster="assets/trae-video-poster.jpg">
+        <source src="assets/trae-video.mp4" type="video/mp4">
+      </video>
+      <div class="video-fallback">Video kommer snart</div>
+    </div>
+    <div class="prose" style="margin-top:30px;">
+      <p>Et enkelt blad er næsten ingenting. Men når det følges af et andet, og et til, sker der noget.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt-band">
+  <div class="wrap narrow">
+    <div class="section-head">
+      <div class="eyebrow">Hvert blad tæller</div>
+      <h2>Et blad er lille. Fællesskabet er stort</h2>
+    </div>
+    <div class="prose">
+      <p>For <strong>25 kr.</strong> kan du købe dit eget blad på en af vores caféer. Du får bladet i hånden, hænger det selv på træet — og fra dét øjeblik bliver dit bidrag en lille del af noget meget større.</p>
+      <p>Alene fylder ét blad ikke meget på vores træ. Men så kommer det næste. Og det næste. Et blad fra en gæst, der spiser hos os. Et fra én, der bare kigger forbi. Et fra en familie, en kollega eller en ven.</p>
+      <p>Lidt efter lidt vokser træet. Og med hvert nyt blad bliver det mere og mere synligt, hvad der kan ske, når mange mennesker vælger at gøre en lille forskel. Sammen.</p>
+      <p>I <strong>uge 44 og 45</strong> står donationstræerne i alle vores seks caféer. Hvert blad på træerne repræsenterer en donation til CoolUnites arbejde for syge og udsatte børn — blandt andet børn på hospice.</p>
+      <p>For bag træet står børn og familier, som går igennem noget, ingen burde gå igennem. Og vi kan ikke ændre deres situation — men vi kan vælge at gøre noget. Sammen.</p>
+      <p class="pull">Målet er ikke bare at fylde et træ med blade. Det er at fylde det med mennesker, der har valgt at være med.</p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:44px;">
+    <div class="wide-image" id="communityImage">
+      <img src="assets/trae-mennesker.jpg" alt="" onerror="this.closest('.wide-image').classList.add('is-empty'); this.remove();">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <div class="section-head">
+      <div class="eyebrow">Sådan er du med</div>
+      <h2>Dit blad kan blive det næste</h2>
+    </div>
+    <div class="prose">
+      <p>Du behøver ikke booke bord. Du behøver ikke spise hos os. Du er altid velkommen til bare at kigge forbi.</p>
+      <p>Kom ind på din lokale Café Kaiser, køb et blad for 25 kr., og hæng det på træet. Har du lyst til at støtte med mere, kan du selvfølgelig købe flere blade.</p>
+    </div>
+
+    <div class="sub-block">
+      <h3>Få fællesskabet til at vokse</h3>
+      <p>Har du lyst, kan du dele dit blad på sociale medier med <strong>#hvertbladtæller</strong>. På den måde kan du være med til at fortælle andre om træerne — og få endnu flere til at være en del af fællesskabet.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#" id="findCafeLink" class="btn btn-khaki">Find din nærmeste Kaiser</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt-band">
+  <div class="wrap narrow">
+    <div class="section-head">
+      <div class="eyebrow">Guldbladet</div>
+      <h2>Nogle blade får lov at skinne lidt ekstra</h2>
+    </div>
+    <div class="prose">
+      <p>Virksomheder og samarbejdspartnere kan også være med til at få træerne til at vokse.</p>
+      <p>Med et guldblad støtter I indsamlingen med et større bidrag — og får jeres eget blad på alle vores donationstræer som et synligt tegn på, at I har valgt at være en del af den fælles indsats.</p>
+      <p>For uanset størrelsen begynder det samme sted: med ønsket om at gøre en forskel.</p>
+      <p>Flere virksomheder har allerede været med til at få træet til at vokse. <a href="#hall-of-fame" class="inline-link">Mød dem her</a>.</p>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#pakker" class="btn btn-khaki">Se guldbladene</a>
+    </div>
   </div>
 </section>
 
@@ -350,13 +436,10 @@ const CONFIG = {
 
   heroImage: "assets/donations-trae.jpg",
 
-  intro: "Et blad koster 25 kr. – men tænk, hvad hundredvis af blade kan blive til. Køb et blad, hæng det på træet, og vær med til at få vores donationstræer til at vokse.",
+  // Link bag "Find din nærmeste Kaiser"
+  findCafeUrl: "https://cafekaiser.dk",
 
-  aboutTitle: "Et træ vokser ikke af ét blad",
-  aboutBody: [
-    "Det vokser, når mange vælger at være med. I hver af vores caféer og i centrene står et donationstræ, og hver gang nogen donerer, kommer der et nyt blad på.",
-    "Gæster kan købe et blad for 25 kr., når de er forbi. Virksomheder og samarbejdspartnere kan sætte deres eget guldblad på træet gennem en af vores tre pakker og blive en del af vores fælles indsats for syge og udsatte børn."
-  ],
+  intro: "Ét blad ad gangen. Ét menneske ad gangen. Sammen for syge og udsatte børn.",
 
   // MobilePay-nummer i støtte-sektionen nederst.
   mobilepay: "XXXXX",
@@ -510,8 +593,14 @@ const LEAF_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true
 
 document.getElementById('heroImg').src = CONFIG.heroImage;
 document.getElementById('pageIntro').textContent = CONFIG.intro;
-document.getElementById('aboutTitle').textContent = CONFIG.aboutTitle;
-document.getElementById('aboutBody').innerHTML = CONFIG.aboutBody.map(p => `<p>${p}</p>`).join('');
+document.getElementById('findCafeLink').href = CONFIG.findCafeUrl;
+
+// Video — vis fallback-tekst hvis filen ikke findes endnu
+(function(){
+  const v = document.getElementById('treeVideo');
+  v.addEventListener('error', () => v.closest('.video-frame').classList.add('is-empty'), true);
+  if (!v.querySelector('source').src) v.closest('.video-frame').classList.add('is-empty');
+})();
 
 // Packages
 document.getElementById('pkgGrid').innerHTML = CONFIG.packages.map(p => `
