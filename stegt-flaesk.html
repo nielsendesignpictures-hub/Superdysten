@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stegt flæsk-dagene — Kaiser X SuperDysten</title>
-<meta name="description" content="Mandag til onsdag fra kl. 16 i uge 44 og 45 går hele omsætningen fra stegt flæsk ad libitum ubeskåret til CoolUnite.">
+<title>Lad din aftensmad gøre en forskel — Kaiser X SuperDysten</title>
+<meta name="description" content="Lad din aftensmad gøre en forskel. Mandag til onsdag fra kl. 16 i uge 44 og 45 går hele omsætningen fra stegt flæsk ad libitum ubeskåret til CoolUnite.">
 
 <!--
 =====================================================================
@@ -93,6 +93,8 @@
   .cta h2{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(28px,5.5vw,50px);line-height:1;}
   .cta p{color:rgba(246,243,236,.7);max-width:480px;margin:16px auto 30px;font-size:15px;line-height:1.6;}
 
+  .hashtag{margin-top:24px;font-family:var(--font-display);text-transform:uppercase;letter-spacing:.04em;font-size:clamp(16px,2.6vw,22px);color:var(--gold);}
+  .cta p + p{margin-top:-14px;}
   footer{padding:34px 0;text-align:center;font-size:12px;color:var(--khaki-dim);border-top:1px solid var(--line);}
   footer a{text-decoration:underline;text-underline-offset:3px;}
 </style>
@@ -114,8 +116,8 @@
   </div>
   <div class="page-hero-scrim"></div>
   <div class="page-hero-inner">
-    <div class="eyebrow">Aktivitet 01</div>
-    <h1 id="pageTitle">Stegt flæsk-dagene</h1>
+    <div class="eyebrow">Spis og støt</div>
+    <h1 id="pageTitle">Lad din aftensmad gøre en forskel</h1>
     <p id="pageIntro"></p>
   </div>
 </header>
@@ -134,8 +136,9 @@
   <div class="wrap">
     <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto;max-width:620px;">
       <div class="eyebrow">Sæt kryds i kalenderen</div>
-      <h2>Uge 44 og 45 — fra kl. 16</h2>
-      <p style="margin-left:auto;margin-right:auto;">Mandag til onsdag fra kl. 16 i uge 44 og 45 — hele omsætningen fra stegt flæsk ad libitum går ubeskåret til indsamlingen.</p>
+      <h2>Et måltid, der samler os om et fælles mål</h2>
+      <p style="margin-left:auto;margin-right:auto;">Mandag til onsdag fra kl. 16 i uge 44 og 45. Hele omsætningen fra vores stegt flæsk ad libitum går ubeskåret til indsamlingen og Cool Unites vigtige arbejde.</p>
+      <p style="margin-left:auto;margin-right:auto;">Vi tror på, at vi kan gøre en forskel, når vi står sammen — og hver eneste portion stegt flæsk er med til at gøre en forskel.</p>
     </div>
     <div class="date-grid" id="dateGrid"></div>
   </div>
@@ -144,20 +147,25 @@
 <section>
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Hvor</div>
-      <h2>Det sker i alle vores caféer</h2>
-      <p>Kom forbi den café, der ligger tættest på dig.</p>
+      <div class="eyebrow">Kom og vær med</div>
+      <h2>Vi samler ind på alle caféerne</h2>
+      <p>Alle caféerne er en del af indsamlingen. Besøg os på den café, der er tættest på dig.</p>
     </div>
     <div class="place-list" id="placeList"></div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="#" id="bookingLink" class="btn btn-khaki">Book dit bord til stegt flæsk-dagene nu</a>
+    </div>
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
-    <div class="eyebrow">Vil I være med?</div>
-    <h2>Få jeres virksomhed på træet</h2>
-    <p>Ud over stegt flæsk-dagene kan virksomheder støtte gennem vores donationstræ.</p>
-    <a href="index.html#pakker" class="btn btn-khaki">Se pakkerne</a>
+    <div class="eyebrow">Donationstræet</div>
+    <h2>Køb et blad og få træet til at vokse</h2>
+    <p>Når du besøger os i uge 44 og 45, vil du ikke kunne undgå at se vores store, smukke donationstræer. Her kan du købe et blad til 25 kr., som du kan hænge på træet. Hele beløbet går ubeskåret til indsamlingen.</p>
+    <p>Forestil dig, hvordan et bart træ begynder at vokse, som flere og flere blade bliver sat på. Et tydeligt bevis på, hvad vi i fællesskab kan skabe.</p>
+    <div class="hashtag">#hvertbladtæller</div>
+    <a href="donationstraeet.html" class="btn btn-khaki" style="margin-top:26px;">Læs om donationstræet</a>
   </div>
 </section>
 
@@ -178,14 +186,18 @@ const CONFIG = {
   heroImage: "assets/stegt-flaesk.jpg",
 
   // Kort intro under overskriften
-  intro: "Spis dig mæt – og vær med til at gøre en forskel. Mandag til onsdag fra kl. 16 i uge 44 og 45 går hele omsætningen fra vores stegt flæsk ad libitum ubeskåret til indsamlingen.",
+  intro: "Mandag til onsdag fra kl. 16 i uge 44 og 45 går hele omsætningen fra stegt flæsk ad libitum ubeskåret til vores indsamling til CoolUnite og deres arbejde for syge og udsatte børn.",
 
   // Brødtekst-sektionen
-  aboutTitle: "Klassikeren, der gør en forskel",
+  aboutTitle: "Støt de børn, der har mest brug for det — og spis stegt flæsk ad libitum",
   aboutBody: [
-    "Stegt flæsk med persillesovs er en af de retter, vores gæster kommer igen efter. I år bruger vi den til noget mere.",
-    "Mandag til onsdag fra kl. 16 i uge 44 og 45 går hele omsætningen fra vores stegt flæsk ad libitum ubeskåret til indsamlingen. Du skal ikke gøre andet end at bestille, som du plejer — så går hele beløbet videre til syge og udsatte børn."
+    "Vores stegt flæsk ad libitum med hjemmelavet persillesovs er en af de retter, vores gæster kommer tilbage efter igen og igen. Det er nationalretten, der samler os som danskere, og som tidligere har samlet et stort fællesskab til både Knæk Cancer og Hospitalsklovnene.",
+    "Nu vil vi endnu engang bruge den klassiske ret til noget mere. At gå sammen med jer om et fælles mål: at samle så mange penge ind som muligt til syge og udsatte børn og deres familier.",
+    "Det eneste, du skal gøre, er at besøge os en af stegt flæsk-dagene og bestille stegt flæsk ad libitum — så går hele beløbet videre til de børn, der har mest brug for det."
   ],
+
+  // Knappen under caféerne. Sæt til jeres bookingside eller forsiden.
+  bookingUrl: "https://cafekaiser.dk",
 
   // De seks datoer. Ret dag, dato og måned efterhånden som de aftales.
   dates: [
@@ -229,6 +241,8 @@ document.getElementById('placeList').innerHTML = CONFIG.places.map(p => `
     <span>${p.address}</span>
   </div>
 `).join('');
+
+document.getElementById('bookingLink').href = CONFIG.bookingUrl;
 
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
