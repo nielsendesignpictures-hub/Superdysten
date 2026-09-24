@@ -446,11 +446,20 @@
   .marquee-section{padding:68px 0; border-top:1px solid var(--line);}
   .marquee-label{text-align:center; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--khaki-dim); margin-bottom:26px;}
   .marquee{overflow:hidden; position:relative; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);}
-  .marquee-track{display:flex; width:max-content; gap:76px; animation:scroll 28s linear infinite;}
+  .marquee-track{display:flex; width:max-content; gap:28px; animation:scroll 40s linear infinite;}
   .marquee:hover .marquee-track{animation-play-state:paused;}
-  .marquee-item{display:flex; align-items:center; justify-content:center; height:56px; opacity:0.95; flex-shrink:0;}
-  .marquee-item img{height:100%; width:auto;}
-  .marquee-item.text-logo{font-family:var(--font-display); font-size:18px; letter-spacing:0.02em; color:var(--cream); text-transform:uppercase; white-space:nowrap;}
+  .marquee-item{
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    width:210px; height:104px; padding:18px 24px;
+    background:var(--charcoal); border:1px solid var(--line); border-radius:var(--radius);
+    transition:border-color .25s ease;
+  }
+  .marquee-item:hover{border-color:var(--khaki-dim);}
+  .marquee-item img{max-height:100%; max-width:100%; width:auto; height:auto; object-fit:contain;}
+  .marquee-item.text-logo{font-family:var(--font-display); font-size:17px; letter-spacing:0.02em; color:var(--cream); text-transform:uppercase; text-align:center; line-height:1.2;}
+  .marquee-item.is-empty{border-style:dashed;}
+  .marquee-item.is-empty::after{content:"Ledig plads"; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--khaki-dim);}
+  @media(max-width:600px){.marquee-item{width:160px; height:88px; padding:14px 18px;} .marquee-track{gap:20px;}}
   @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
   /* ---------- footer ---------- */
@@ -552,7 +561,7 @@
     </div>
     <div class="pkg-grid" id="pkgGrid"><!-- fyldes af CONFIG.packages --></div>
     <div class="pkg-note">
-      <strong>Alle virksomhedspakker</strong> giver ét guldblad på alle vores donationstræer — i caféerne 
+      <strong>Alle virksomhedspakker</strong> giver ét guldblad på alle vores donationstræer i caféerne.
     </div>
     <div class="contact-box" id="kontakt">
       <h3 id="contactTitle"></h3>
@@ -809,11 +818,11 @@ const CONFIG = {
       url: ""
     },
     {
-      name: "Spar nord",
-      leaf: "ld",
+      name: "Spar Nord",
+      leaf: "lg",
       tier: "Stort Guldblad",
       img: "assets/spar.png",
-      text: "Spar nordstøtter indsamlingen og er med til at få træet til at vokse.",
+      text: "Spar Nord støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
@@ -826,10 +835,10 @@ const CONFIG = {
     },
     {
       name: "Frontliners",
-      leaf: "sd",
+      leaf: "md",
       tier: "Guldblad",
       img: "assets/frontliners.jpg",
-      text: "Fronteliners støtter indsamlingen og er med til at få træet til at vokse.",
+      text: "Frontliners støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     }
   ],
@@ -843,8 +852,15 @@ const CONFIG = {
     { img: "assets/servicelovers.jpg" },
     { img: "assets/frontliners.jpg" },
     { img: "assets/spar.png" },
-    { img: "assets/multiline.jpg" }
-    // Tilføj flere som: { img: "assets/firma.png" },
+    { img: "assets/multiline.jpg" },
+
+    // Tomme kasser klar til flere logoer — udskift {} med
+    // { img: "assets/firmanavn.png" }. Slet dem I ikke får brug for.
+    {},
+    {},
+    {},
+    {},
+    {}
   ]
 };
 
@@ -1073,9 +1089,11 @@ if (!CONFIG.hallOfFame.length) {
 
 // Sponsor marquee (duplicated for seamless loop)
 function sponsorHTML(s){
-  return s.img
-    ? `<div class="marquee-item"><img src="${s.img}" alt=""></div>`
-    : `<div class="marquee-item text-logo">${s.text}</div>`;
+  if (s.img) {
+    return `<div class="marquee-item"><img src="${s.img}" alt="" onerror="this.closest('.marquee-item').classList.add('is-empty'); this.remove();"></div>`;
+  }
+  if (s.text) return `<div class="marquee-item text-logo">${s.text}</div>`;
+  return `<div class="marquee-item is-empty"></div>`;
 }
 const sponsorRow = CONFIG.sponsors.map(sponsorHTML).join('');
 document.getElementById('marqueeTrack').innerHTML = sponsorRow + sponsorRow;
