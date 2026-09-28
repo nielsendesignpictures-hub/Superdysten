@@ -77,10 +77,13 @@
   .sub-block{margin-top:34px;border-top:1px solid var(--line);padding-top:28px;}
   .sub-block h3{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(18px,2.8vw,24px);margin-bottom:12px;}
   .sub-block p{font-size:16px;line-height:1.7;color:rgba(246,243,236,.8);}
-  .video-frame{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:linear-gradient(160deg,var(--charcoal-2),var(--black));aspect-ratio:16/9;}
-  .video-frame video{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;}
+  .video-frame{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--black);}
+  .video-frame video{width:100%;height:100%;display:block;position:relative;z-index:1;}
+  /* Kun pladsholderen har et fast format — den rigtige video bestemmer selv */
+  .video-frame.is-empty{aspect-ratio:21/9;background:linear-gradient(160deg,var(--charcoal-2),var(--black));}
   .video-frame .video-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--khaki-dim);z-index:0;}
   .video-frame.is-empty video{display:none;}
+  .video-frame:not(.is-empty) .video-fallback{display:none;}
   .wide-image{aspect-ratio:21/9;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,var(--charcoal-2),var(--black));position:relative;}
   .wide-image img{width:100%;height:100%;object-fit:cover;}
   .wide-image.is-empty::after{content:"Billede mangler";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--khaki-dim);}
@@ -286,6 +289,7 @@
     <div class="prose">
       <p>For <strong>25 kr.</strong> kan du købe dit eget blad på en af vores caféer. Du får bladet i hånden, hænger det selv på træet — og fra dét øjeblik bliver dit bidrag en lille del af noget meget større.</p>
       <p>Alene fylder ét blad ikke meget på vores træ. Men så kommer det næste. Og det næste. Et blad fra en gæst, der spiser hos os. Et fra én, der bare kigger forbi. Et fra en familie, en kollega eller en ven.</p>
+      <p>Lidt efter lidt vokser træet. Og med hvert nyt blad bliver det mere og mere synligt, hvad der kan ske, når mange mennesker vælger at gøre en lille forskel. Sammen.</p>
       <p>I <strong>uge 44 og 45</strong> står donationstræerne i alle vores seks caféer. Hvert blad på træerne repræsenterer en donation til CoolUnites arbejde for syge og udsatte børn — blandt andet børn på hospice.</p>
       <p>For bag træet står børn og familier, som går igennem noget, ingen burde gå igennem. Og vi kan ikke ændre deres situation — men vi kan vælge at gøre noget. Sammen.</p>
       <p class="pull">Målet er ikke bare at fylde et træ med blade. Det er at fylde det med mennesker, der har valgt at være med.</p>
@@ -436,7 +440,7 @@ const CONFIG = {
   heroImage: "assets/donations-trae.jpg",
 
   // Link bag "Find din nærmeste Kaiser"
-  findCafeUrl: "https://cafekaiser.dk/cafe-kaiser/kontakt.aspx",
+  findCafeUrl: "https://cafekaiser.dk",
 
   intro: "Ét blad ad gangen. Ét menneske ad gangen. Sammen for syge og udsatte børn.",
 
@@ -507,7 +511,7 @@ const CONFIG = {
   // OBS: samme liste findes i index.html — ret begge steder.
   hallOfFame: [
     {
-      name: "Brix elteknik",
+      name: "Brix",
       leaf: "lg",
       tier: "Stort Guldblad",
       img: "assets/brix.png",
@@ -515,7 +519,7 @@ const CONFIG = {
       url: ""
     },
     {
-      name: "Tømrermester William Smith ",
+      name: "William Smith Tømrermester",
       leaf: "lg",
       tier: "Stort Guldblad",
       img: "assets/william-smith.jpg",
@@ -523,10 +527,10 @@ const CONFIG = {
       url: ""
     },
     {
-      name: "østergaard interieur A/S",
+      name: "Østergård A/S",
       leaf: "lg",
       tier: "Stort Guldblad",
-      img: "assets/ostergard.jpg",
+      img: "assets/ostergaard.jpg",
       text: "Østergård A/S støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
@@ -542,7 +546,7 @@ const CONFIG = {
       name: "Invita",
       leaf: "sm",
       tier: "Lille Guldblad",
-      img: "assets/invita.jpg",
+      img: "assets/Invita.png",
       text: "Invita støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
@@ -552,35 +556,35 @@ const CONFIG = {
     //     10.000 → leaf: "md", tier: "Mellem Guldblad"
     //     15.000 → leaf: "lg", tier: "Stort Guldblad"
     {
-      name: "Service lovers",
-      leaf: "sm",
+      name: "Murerfirma Holm & Søn",
+      leaf: "md",
       tier: "Guldblad",
-      img: "assets/servicelovers.jpg",
-      text: "Servicelovers støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/holm-og-son.jpg",
+      text: "Murerfirma Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Spar nord",
-      leaf: "ld",
+      name: "Fætter VVS",
+      leaf: "md",
       tier: "Guldblad",
-      img: "assets/spar.png",
-      text: "Spar nord støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/faetter-vvs.jpg",
+      text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Multiline A/S",
-      leaf: "sm",
+      name: "HHM",
+      leaf: "md",
       tier: "Guldblad",
-      img: "assets/multiline.jpg",
-      text: "Multiline A/S støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/hhm.jpg",
+      text: "HHM støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Frontliners",
-      leaf: "sd",
+      name: "Børge Nielsen",
+      leaf: "md",
       tier: "Guldblad",
-      img: "assets/frontliners.jpg",
-      text: "Fronlinters støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/borge-nielsen.jpg",
+      text: "Børge Nielsen støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     }
   ]
@@ -594,11 +598,26 @@ document.getElementById('heroImg').src = CONFIG.heroImage;
 document.getElementById('pageIntro').textContent = CONFIG.intro;
 document.getElementById('findCafeLink').href = CONFIG.findCafeUrl;
 
-// Video — vis fallback-tekst hvis filen ikke findes endnu
+// Video — vis fallback-tekst hvis videofilen ikke findes endnu.
+// Bemærk: et manglende poster-billede tæller IKKE som en manglende video.
 (function(){
   const v = document.getElementById('treeVideo');
-  v.addEventListener('error', () => v.closest('.video-frame').classList.add('is-empty'), true);
-  if (!v.querySelector('source').src) v.closest('.video-frame').classList.add('is-empty');
+  if (!v) return;
+  const frame = v.closest('.video-frame');
+  const src = v.querySelector('source');
+  const markEmpty = () => frame.classList.add('is-empty');
+  const markOk    = () => frame.classList.remove('is-empty');
+
+  if (!src || !src.getAttribute('src')) { markEmpty(); return; }
+  src.addEventListener('error', markEmpty);   // filen kan ikke hentes
+  v.addEventListener('error', markEmpty);     // uden capture: kun videoens egne fejl
+  v.addEventListener('loadedmetadata', () => {
+    markOk();
+    // Rammen tager videoens eget format — aflang, 16:9 eller hvad Kasper leverer
+    if (v.videoWidth && v.videoHeight) {
+      frame.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+    }
+  });
 })();
 
 // Packages
