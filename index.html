@@ -680,7 +680,7 @@ const CONFIG = {
   // salg i caféerne, donationstræet og virksomhedspakker. Opdater kun "amount" løbende —
   // teksten "Opdateres hverdag klokken 10:00" står fast på siden.
   counter: {
-    amount: 110000,          // kr. indsamlet indtil videre
+    amount: 115000,          // kr. indsamlet indtil videre
     goal: 500000         // kr. — mål for baren under tallet (sæt 0 for at skjule baren)
   },
 
@@ -786,7 +786,7 @@ const CONFIG = {
       tier: "Stort Guldblad",
       img: "assets/brix.png",
       text: "Brix støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://brixelteknik.dk/"
     },
     {
       name: "Tømrermester William Smith",
@@ -802,7 +802,7 @@ const CONFIG = {
       tier: "Stort Guldblad",
       img: "assets/oster.jpg",
       text: "Østergård A/S støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://ostergaard-i.dk/"
     },
     {
       name: "Malerfirmaet Falster",
@@ -818,7 +818,7 @@ const CONFIG = {
       tier: "Lille Guldblad",
       img: "assets/invita.jpg",
       text: "Invita støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://www.invita.dk/butikker/invita-hillerod/"
     },
 
     // ---- Beløb endnu ikke bekræftet. Ret "leaf" og "tier", når I ved det:
@@ -831,7 +831,7 @@ const CONFIG = {
       tier: "Lille Guldblad",
       img: "assets/multiline.jpg",
       text: "Multiline A/S støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://multiline.dk/"
     },
     {
       name: "Spar Nord",
@@ -839,7 +839,7 @@ const CONFIG = {
       tier: "Stort Guldblad",
       img: "assets/spar.png",
       text: "Spar Nord støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://www.sparnord.dk/dit-liv/"
     },
     {
       name: "Servicelovers",
@@ -847,22 +847,27 @@ const CONFIG = {
       tier: "Lille Guldblad",
       img: "assets/servicelovers.jpg",
       text: "Servicelovers støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://servicelovers.com/da"
     },
     {
       name: "Frontliners",
-      leaf: "md",
+      leaf: "sd",
       tier: "Guldblad",
       img: "assets/frontliners.jpg",
       text: "Frontliners støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://frontliners.ai/"
     },
 
     // ---- Tomme kasser klar til flere virksomheder ----
     // Udfyld name/leaf/tier/img/text, så bliver kassen automatisk til et
     // rigtigt kort OG et guldblad på træet. Tomme kasser ({}) vises kun
     // som "Plads til jer" og kommer IKKE på træet.
-    {},
+    { name: "Stark",
+      leaf: "sm",
+      tier: "Guldblad",
+      img: "assets/stark.jpg",
+      text: "Stark støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""},
     {},
     {},
     {},
@@ -880,6 +885,7 @@ const CONFIG = {
     { img: "assets/frontliners.jpg" },
     { img: "assets/spar.png" },
     { img: "assets/multiline.jpg" },
+    { img: "assets/stark.jpg" },
 
     // Tomme kasser klar til flere logoer — udskift {} med
     // { img: "assets/firmanavn.png" }. Slet dem I ikke får brug for.
