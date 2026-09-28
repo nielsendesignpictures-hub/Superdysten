@@ -75,10 +75,13 @@
     .split-media{order:2;}
     .split-text{order:1;}
   }
-  .video-frame{position:relative; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:linear-gradient(160deg,var(--charcoal-2),var(--black)); aspect-ratio:16/9;}
-  .video-frame video{width:100%; height:100%; object-fit:cover; display:block; position:relative; z-index:1;}
+  .video-frame{position:relative; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--black);}
+  .video-frame video{width:100%; height:100%; display:block; position:relative; z-index:1;}
+  /* Kun pladsholderen har et fast format — den rigtige video bestemmer selv */
+  .video-frame.is-empty{aspect-ratio:21/9; background:linear-gradient(160deg,var(--charcoal-2),var(--black));}
   .video-frame .video-fallback{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--khaki-dim); z-index:0;}
   .video-frame.is-empty video{display:none;}
+  .video-frame:not(.is-empty) .video-fallback{display:none;}
 
   /* datoer */
   .dates{background:var(--charcoal);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
@@ -268,11 +271,26 @@ document.getElementById('placeList').innerHTML = CONFIG.places.map(p => `
 
 document.getElementById('bookingLink').href = CONFIG.bookingUrl;
 
-// Video — vis fallback-tekst hvis filen ikke findes endnu
+// Video — vis fallback-tekst hvis videofilen ikke findes endnu.
+// Bemærk: et manglende poster-billede tæller IKKE som en manglende video.
 (function(){
   const v = document.getElementById('flaeskVideo');
-  v.addEventListener('error', () => v.closest('.video-frame').classList.add('is-empty'), true);
-  v.querySelector('source').addEventListener('error', () => v.closest('.video-frame').classList.add('is-empty'));
+  if (!v) return;
+  const frame = v.closest('.video-frame');
+  const src = v.querySelector('source');
+  const markEmpty = () => frame.classList.add('is-empty');
+  const markOk    = () => frame.classList.remove('is-empty');
+
+  if (!src || !src.getAttribute('src')) { markEmpty(); return; }
+  src.addEventListener('error', markEmpty);   // filen kan ikke hentes
+  v.addEventListener('error', markEmpty);     // uden capture: kun videoens egne fejl
+  v.addEventListener('loadedmetadata', () => {
+    markOk();
+    // Rammen tager videoens eget format — aflang, 16:9 eller hvad Kasper leverer
+    if (v.videoWidth && v.videoHeight) {
+      frame.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+    }
+  });
 })();
 
 const nav = document.getElementById('nav');
