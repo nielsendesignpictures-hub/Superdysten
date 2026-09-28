@@ -77,6 +77,12 @@
   .sub-block{margin-top:34px;border-top:1px solid var(--line);padding-top:28px;}
   .sub-block h3{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(18px,2.8vw,24px);margin-bottom:12px;}
   .sub-block p{font-size:16px;line-height:1.7;color:rgba(246,243,236,.8);}
+  .split{display:grid;grid-template-columns:1fr;gap:32px;align-items:center;}
+  @media(min-width:900px){
+    .split{grid-template-columns:1fr 1fr;gap:48px;}
+    .split-media{order:2;}
+    .split-text{order:1;}
+  }
   .video-frame{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--black);}
   .video-frame video{width:100%;height:100%;display:block;position:relative;z-index:1;}
   /* Kun pladsholderen har et fast format — den rigtige video bestemmer selv */
@@ -263,19 +269,25 @@
 </header>
 
 <section>
-  <div class="wrap narrow">
-    <div class="section-head">
-      <div class="eyebrow">Tanken bag træet</div>
-      <h2>Det hele begynder med et blad</h2>
-    </div>
-    <div class="video-frame" id="videoFrame">
-      <video id="treeVideo" controls playsinline poster="assets/trae-video-poster.jpg">
-        <source src="assets/trae-video.mp4" type="video/mp4">
-      </video>
-      <div class="video-fallback">Video kommer snart</div>
-    </div>
-    <div class="prose" style="margin-top:30px;">
-      <p>Et enkelt blad er næsten ingenting. Men når det følges af et andet, og et til, sker der noget.</p>
+  <div class="wrap">
+    <div class="split">
+      <div class="split-media">
+        <div class="video-frame" id="videoFrame">
+          <video id="treeVideo" controls playsinline poster="assets/trae-video-poster.jpg">
+            <source src="assets/trae-video.mp4" type="video/mp4">
+          </video>
+          <div class="video-fallback">Video kommer snart</div>
+        </div>
+      </div>
+      <div class="split-text">
+        <div class="section-head" style="margin-bottom:24px;">
+          <div class="eyebrow">Tanken bag træet</div>
+          <h2>Det hele begynder med et blad</h2>
+        </div>
+        <div class="prose">
+          <p>Et enkelt blad er næsten ingenting. Men når det følges af et andet, og et til, sker der noget.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
