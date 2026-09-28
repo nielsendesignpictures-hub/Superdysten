@@ -82,6 +82,9 @@
     .split{grid-template-columns:1fr 1fr;gap:48px;}
     .split-media{order:2;}
     .split-text{order:1;}
+    /* Lang tekst: videoen følger med ned, så den er synlig hele vejen */
+    .split.split-top{align-items:start;}
+    .split.split-top .split-media{position:sticky;top:96px;}
   }
   .video-frame{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--black);}
   .video-frame video{width:100%;height:100%;display:block;position:relative;z-index:1;}
@@ -268,9 +271,9 @@
   </div>
 </header>
 
-<section>
+<section class="alt-band">
   <div class="wrap">
-    <div class="split">
+    <div class="split split-top">
       <div class="split-media">
         <div class="video-frame" id="videoFrame">
           <video id="treeVideo" controls playsinline poster="assets/trae-video-poster.jpg">
@@ -280,31 +283,20 @@
         </div>
       </div>
       <div class="split-text">
-        <div class="section-head" style="margin-bottom:24px;">
-          <div class="eyebrow">Tanken bag træet</div>
-          <h2>Det hele begynder med et blad</h2>
-        </div>
-        <div class="prose">
-          <p>Et enkelt blad er næsten ingenting. Men når det følges af et andet, og et til, sker der noget.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt-band">
-  <div class="wrap narrow">
-    <div class="section-head">
+    <div class="section-head" style="margin-bottom:24px;">
       <div class="eyebrow">Hvert blad tæller</div>
       <h2>Et blad er lille. Fællesskabet er stort</h2>
     </div>
     <div class="prose">
+      <p>Et enkelt blad er næsten ingenting. Men når det følges af et andet, og et til, sker der noget.</p>
       <p>For <strong>25 kr.</strong> kan du købe dit eget blad på en af vores caféer. Du får bladet i hånden, hænger det selv på træet — og fra dét øjeblik bliver dit bidrag en lille del af noget meget større.</p>
       <p>Alene fylder ét blad ikke meget på vores træ. Men så kommer det næste. Og det næste. Et blad fra en gæst, der spiser hos os. Et fra én, der bare kigger forbi. Et fra en familie, en kollega eller en ven.</p>
       <p>Lidt efter lidt vokser træet. Og med hvert nyt blad bliver det mere og mere synligt, hvad der kan ske, når mange mennesker vælger at gøre en lille forskel. Sammen.</p>
       <p>I <strong>uge 44 og 45</strong> står donationstræerne i alle vores seks caféer. Hvert blad på træerne repræsenterer en donation til CoolUnites arbejde for syge og udsatte børn — blandt andet børn på hospice.</p>
       <p>For bag træet står børn og familier, som går igennem noget, ingen burde gå igennem. Og vi kan ikke ændre deres situation — men vi kan vælge at gøre noget. Sammen.</p>
       <p class="pull">Målet er ikke bare at fylde et træ med blade. Det er at fylde det med mennesker, der har valgt at være med.</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="wrap" style="margin-top:44px;">
@@ -568,35 +560,35 @@ const CONFIG = {
     //     10.000 → leaf: "md", tier: "Mellem Guldblad"
     //     15.000 → leaf: "lg", tier: "Stort Guldblad"
     {
-      name: "Murerfirma Holm & Søn",
-      leaf: "md",
+      name: "Multiline A/S",
+      leaf: "sm",
       tier: "Guldblad",
-      img: "assets/holm-og-son.jpg",
-      text: "Murerfirma Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/multiline.jpg",
+      text: "Multiline Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Fætter VVS",
-      leaf: "md",
+      name: "Spar Nord",
+      leaf: "sm",
       tier: "Guldblad",
-      img: "assets/faetter-vvs.jpg",
-      text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/.jpg",
+      text: "Spar nord støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "HHM",
-      leaf: "md",
+      name: "Servicelovers",
+      leaf: "sm",
       tier: "Guldblad",
-      img: "assets/hhm.jpg",
-      text: "HHM støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/servicelovers.jpg",
+      text: "Servicelovers støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Børge Nielsen",
-      leaf: "md",
+      name: "Frontliners",
+      leaf: "sm",
       tier: "Guldblad",
-      img: "assets/borge-nielsen.jpg",
-      text: "Børge Nielsen støtter indsamlingen og er med til at få træet til at vokse.",
+      img: "assets/frontliners.jpg",
+      text: "Frontliners støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     }
   ]
