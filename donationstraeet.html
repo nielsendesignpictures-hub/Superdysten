@@ -230,6 +230,13 @@
   .hof-body p{font-size:14px;color:rgba(246,243,236,.66);line-height:1.55;flex-grow:1;}
   .hof-link{margin-top:16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--khaki);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s;}
   .hof-link:hover{color:var(--gold);}
+  .hof-card.is-slot{
+    border-style:dashed; background:transparent; min-height:300px;
+    align-items:center; justify-content:center; text-align:center; padding:30px 24px;
+  }
+  .hof-card.is-slot:hover{transform:none; background:transparent; border-color:var(--khaki-dim);}
+  .hof-card.is-slot .slot-leaf{width:34px; height:34px; color:var(--khaki-dim); margin-bottom:14px;}
+  .hof-card.is-slot .slot-text{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--khaki-dim);}
   .hof-empty{grid-column:1/-1;background:var(--charcoal);border:1px solid var(--line);border-radius:var(--radius);padding:56px 24px;text-align:center;color:var(--khaki-dim);font-size:14px;}
 
   /* gæste-cta */
@@ -523,15 +530,15 @@ const CONFIG = {
   // OBS: samme liste findes i index.html — ret begge steder.
   hallOfFame: [
     {
-      name: "Brix",
+      name: "Brix Elteknik",
       leaf: "lg",
       tier: "Stort Guldblad",
       img: "assets/brix.png",
       text: "Brix støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://brixelteknik.dk/"
     },
     {
-      name: "William Smith Tømrermester",
+      name: "Tømrermester William Smith",
       leaf: "lg",
       tier: "Stort Guldblad",
       img: "assets/william-smith.jpg",
@@ -539,28 +546,28 @@ const CONFIG = {
       url: ""
     },
     {
-      name: "Østergård A/S",
+      name: "Østergaard Interieur A/S",
       leaf: "lg",
       tier: "Stort Guldblad",
-      img: "assets/ostergaard.jpg",
+      img: "assets/oster.jpg",
       text: "Østergård A/S støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://ostergaard-i.dk/"
     },
     {
       name: "Malerfirmaet Falster",
       leaf: "sm",
       tier: "Lille Guldblad",
-      img: "assets/malerfirmaet-falster.jpg",
+      img: "assets/maler.jpg",
       text: "Malerfirmaet Falster støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""
     },
     {
-      name: "Invita",
+      name: "Invita Hillerød",
       leaf: "sm",
       tier: "Lille Guldblad",
-      img: "assets/Invita.png",
+      img: "assets/invita.jpg",
       text: "Invita støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://www.invita.dk/butikker/invita-hillerod/"
     },
 
     // ---- Beløb endnu ikke bekræftet. Ret "leaf" og "tier", når I ved det:
@@ -570,36 +577,62 @@ const CONFIG = {
     {
       name: "Multiline A/S",
       leaf: "sm",
-      tier: "Guldblad",
+      tier: "Lille Guldblad",
       img: "assets/multiline.jpg",
       text: "Multiline A/S støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://multiline.dk/"
     },
     {
       name: "Spar Nord",
-      leaf: "sm",
-      tier: "Guldblad",
+      leaf: "lg",
+      tier: "Stort Guldblad",
       img: "assets/spar.png",
-      text: "Spar nord støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      text: "Spar Nord støtter indsamlingen og er med til at få træet til at vokse.",
+      url: "https://www.sparnord.dk/dit-liv/"
     },
     {
       name: "Servicelovers",
       leaf: "sm",
-      tier: "Guldblad",
+      tier: "Lille Guldblad",
       img: "assets/servicelovers.jpg",
       text: "Servicelovers støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
+      url: "https://servicelovers.com/da"
     },
     {
       name: "Frontliners",
       leaf: "sm",
-      tier: "Guldblad",
+      tier: "Lille Guldblad",
       img: "assets/frontliners.jpg",
       text: "Frontliners støtter indsamlingen og er med til at få træet til at vokse.",
-      url: ""
-    }
-  ]
+      url: "https://frontliners.ai/"
+    },
+
+    // ---- Tomme kasser klar til flere virksomheder ----
+    // Udfyld name/leaf/tier/img/text, så bliver kassen automatisk til et
+    // rigtigt kort OG et guldblad på træet. Tomme kasser ({}) vises kun
+    // som "Plads til jer" og kommer IKKE på træet.
+    { name: "Stark Hillerød",
+      leaf: "sm",
+      tier: "Lille Guldblad",
+      img: "assets/stark.jpg",
+      text: "Stark Hillerød støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""},
+    { name: "Fætter VVS",
+      leaf: "md",
+      tier: "Mellem Guldblad",
+      img: "assets/fatter.jpg",
+      text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""},
+    { name: "Murerfirmaet Holm & Søn",
+      leaf: "md",
+      tier: "Mellem Guldblad",
+      img: "assets/holm.png",
+      text: "Murerfirmaet Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
+      url: "https://holmogson.dk/"},
+    {},
+    {},
+    {}
+  ],
 };
 
 /* ===================== render — rør ikke herunder ===================== */
@@ -674,7 +707,7 @@ document.getElementById('contactPeople').innerHTML = CONFIG.contact.people.map(p
   const leavesG = document.getElementById('treeLeaves');
   const tip = document.getElementById('treeTip');
   const empty = document.getElementById('treeEmpty');
-  const donors = CONFIG.hallOfFame;
+  const donors = CONFIG.hallOfFame.filter(x => x && x.name);
 
   const legend = { lgSm: '5.000 kr.', lgMd: '10.000 kr.', lgLg: '15.000 kr.' };
   Object.entries(legend).forEach(([id, label]) => {
@@ -725,7 +758,7 @@ document.getElementById('contactPeople').innerHTML = CONFIG.contact.people.map(p
     g.addEventListener('focus', show);
     g.addEventListener('blur', hide);
     g.addEventListener('click', () => {
-      const card = document.getElementById('hof-' + i);
+      const card = document.getElementById('hof-' + CONFIG.hallOfFame.indexOf(d));
       if (card) card.scrollIntoView({ behavior:'smooth', block:'center' });
     });
 
@@ -805,10 +838,18 @@ document.getElementById('contactPeople').innerHTML = CONFIG.contact.people.map(p
 
 // Hall of Fame
 const hofGrid = document.getElementById('hofGrid');
-if (!CONFIG.hallOfFame.length) {
+if (!CONFIG.hallOfFame.filter(h => h && h.name).length) {
   hofGrid.innerHTML = '<div class="hof-empty">De første guldblade er på vej — her viser vi de virksomheder, der er med til at få træet til at vokse.</div>';
 } else {
-  hofGrid.innerHTML = CONFIG.hallOfFame.map((h, i) => `
+  hofGrid.innerHTML = CONFIG.hallOfFame.map((h, i) => {
+    // Tom kasse — plads til den næste virksomhed
+    if (!h || !h.name) {
+      return `<div class="hof-card is-slot" id="hof-${i}">
+        <div class="slot-leaf">${LEAF_SVG}</div>
+        <div class="slot-text">Plads til jer</div>
+      </div>`;
+    }
+    return `
     <div class="hof-card" id="hof-${i}">
       <div class="hof-media${h.img ? '' : ' is-empty'}">
         ${h.img ? `<img src="${h.img}" alt="${h.name}" loading="lazy" onerror="this.closest('.hof-media').classList.add('is-empty'); this.remove();">` : ''}
@@ -819,8 +860,8 @@ if (!CONFIG.hallOfFame.length) {
         <p>${h.text || ''}</p>
         ${h.url ? `<a class="hof-link" href="${h.url}" target="_blank" rel="noopener">Besøg hjemmeside &rarr;</a>` : ''}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 const nav = document.getElementById('nav');
