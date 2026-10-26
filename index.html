@@ -521,6 +521,15 @@
   </div>
 </header>
 
+<section id="taeller" class="counter-section">
+  <div class="wrap counter-wrap">
+    <div class="eyebrow">Indsamling</div>
+    <div class="counter-figure" id="counterFigure">70.000<span class="kr">kr.</span></div>
+    <div class="counter-bar-track"><div class="counter-bar-fill" id="counterBar"></div></div>
+    <div class="counter-meta">Opdateres hver dag klokken 10:00</div>
+  </div>
+</section>
+
 <section id="om" style="padding-bottom:40px;">
   <div class="wrap narrow-col">
     <div class="section-head">
@@ -544,15 +553,6 @@
   </div>
   <div class="wrap">
     <div class="grid-4" id="activityGrid"><!-- fyldes af CONFIG.activities --></div>
-  </div>
-</section>
-
-<section id="taeller" class="counter-section">
-  <div class="wrap counter-wrap">
-    <div class="eyebrow">Indsamling</div>
-    <div class="counter-figure" id="counterFigure">70.000<span class="kr">kr.</span></div>
-    <div class="counter-bar-track"><div class="counter-bar-fill" id="counterBar"></div></div>
-    <div class="counter-meta">Opdateres hverdag klokken 10:00</div>
   </div>
 </section>
 
@@ -678,9 +678,9 @@ const CONFIG = {
 
   // Live tæller — indtastes manuelt hver morgen, da beløbet samles fra
   // salg i caféerne, donationstræet og virksomhedspakker. Opdater kun "amount" løbende —
-  // teksten "Opdateres hverdag klokken 10:00" står fast på siden.
+  // teksten "Opdateres hver dag klokken 10:00" står fast på siden.
   counter: {
-    amount: 140000,          // kr. indsamlet indtil videre
+    amount: 135000,          // kr. indsamlet indtil videre
     goal: 500000         // kr. — mål for baren under tallet (sæt 0 for at skjule baren)
   },
 
@@ -862,7 +862,7 @@ const CONFIG = {
     // Udfyld name/leaf/tier/img/text, så bliver kassen automatisk til et
     // rigtigt kort OG et guldblad på træet. Tomme kasser ({}) vises kun
     // som "Plads til jer" og kommer IKKE på træet.
-    { name: "Stark Hillerød ",
+    { name: "Stark Hillerød",
       leaf: "sm",
       tier: "Lille Guldblad",
       img: "assets/stark.jpg",
@@ -874,24 +874,14 @@ const CONFIG = {
       img: "assets/fatter.jpg",
       text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""},
-    { name: "Murerfirmaet Holm & Søn ",
+    { name: "Murerfirmaet Holm & Søn",
       leaf: "md",
       tier: "Mellem Guldblad",
       img: "assets/holm.png",
-      text: "Holm & søn indsamlingen og er med til at få træet til at vokse.",
+      text: "Murerfirmaet Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
       url: "https://holmogson.dk/"},
-    { name: "Redhill",
-      leaf: "md",
-      tier: "",
-      img: "assets/redhill.jpg",
-      text: "Redhill har sponseret donations træer & blade",
-      url: "https://redhill.dk/"},
-    { name: "Mh elektric",
-      leaf: "sm",
-      tier: "lille guldblad",
-      img: "assets/mh.png",
-      text: "Mh elektric støtter indsamlingen og er med til at få træet til at vokse",
-      url: "https://mh-elektric.dk/"},
+    {},
+    {},
     {}
   ],
 
@@ -907,8 +897,7 @@ const CONFIG = {
     { img: "assets/multiline.jpg" },
     { img: "assets/fatter.jpg" },
     { img: "assets/stark.jpg" },
-     { img: "assets/holm.png" },
-    { img: "assets/redhill.jpg" },
+    { img: "assets/holm.png" },
 
     // Tomme kasser klar til flere logoer — udskift {} med
     // { img: "assets/firmanavn.png" }. Slet dem I ikke får brug for.
