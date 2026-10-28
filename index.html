@@ -680,7 +680,7 @@ const CONFIG = {
   // salg i caféerne, donationstræet og virksomhedspakker. Opdater kun "amount" løbende —
   // teksten "Opdateres hver dag klokken 10:00" står fast på siden.
   counter: {
-    amount: 167706,          // kr. indsamlet indtil videre
+    amount: 216830,          // kr. indsamlet indtil videre
     goal: 500000         // kr. — mål for baren under tallet (sæt 0 for at skjule baren)
   },
 
@@ -706,8 +706,7 @@ const CONFIG = {
     }
   ],
 
-  // MobilePay-nummer i "Støt indsamlingen"-sektionen nederst.
-  mobilepay: "XXXXX",
+
 
   // Kontaktblok under pakkerne. Pakkerne kan kun købes ved henvendelse,
   // så her står teksten og de personer, virksomheder skal fat i.
@@ -892,7 +891,12 @@ const CONFIG = {
       img: "assets/mh.png",
       text: "Mh elektric støtter indsamlingen og er med til at få træet til at vokse",
       url: "https://mh-elektric.dk/"},
-    {}
+    { name: "Djboringer A/S",
+      leaf: "lg",
+      tier: "Stort guldblad",
+      img: "assets/dj.png",
+      text: "Djboringer  støtter indsamlingen og er med til at få træet til at vokse",
+      url: "https://djboringer.dk/"}
   ],
 
   // Sponsor-logoer i rullebåndet. Brug enten et billede (img) eller
@@ -908,6 +912,7 @@ const CONFIG = {
     { img: "assets/fatter.jpg" },
     { img: "assets/stark.jpg" },
      { img: "assets/holm.png" },
+    { img: "assets/dj.png" },
     { img: "assets/redhill.jpg" },
 
     // Tomme kasser klar til flere logoer — udskift {} med
