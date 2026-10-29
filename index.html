@@ -771,6 +771,8 @@ const CONFIG = {
   ghostLeaves: 5,
   ghostText: "Skal jeres hænge her?",
 
+  // Rækkefølgen sorteres automatisk efter bidrag — du kan skrive dem i vilkårlig rækkefølge.
+  // Valgfrit: amount: 40000 hvis en donor har givet mere end pakkens beløb.
   // Hall of Fame — virksomheder der har doneret. Tilføj en post pr.
   // virksomhed efterhånden som de kommer til. Hver post giver BÅDE et
   // guldblad på det digitale træ OG et kort i Hall of Fame.
@@ -781,6 +783,7 @@ const CONFIG = {
   hallOfFame: [
     {
       name: "Spar Nord",
+      amount: 40000,
       leaf: "lg",
       tier: "40.000 kr",
       img: "assets/spar.png",
@@ -861,7 +864,7 @@ const CONFIG = {
     // Udfyld name/leaf/tier/img/text, så bliver kassen automatisk til et
     // rigtigt kort OG et guldblad på træet. Tomme kasser ({}) vises kun
     // som "Plads til jer" og kommer IKKE på træet.
-    { name: "Stark Hillerød ",
+    { name: "Stark Hillerød",
       leaf: "sm",
       tier: "Lille Guldblad",
       img: "assets/stark.jpg",
@@ -873,7 +876,7 @@ const CONFIG = {
       img: "assets/fatter.jpg",
       text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""},
-    { name: "Murerfirmaet Holm & Søn ",
+    { name: "Murerfirmaet Holm & Søn",
       leaf: "lg",
       tier: "Stort Guldblad",
       img: "assets/holm.png",
@@ -881,19 +884,19 @@ const CONFIG = {
       url: "https://holmogson.dk/"},
     { name: "Redhill",
       leaf: "md",
-      tier: "Mellem guldblad",
+      tier: "Mellem Guldblad",
       img: "assets/redhill.jpg",
       text: "Redhill har sponseret donations træer & blade",
       url: "https://redhill.dk/"},
     { name: "Mh elektric",
       leaf: "sm",
-      tier: "lille guldblad",
+      tier: "Lille Guldblad",
       img: "assets/mh.png",
       text: "Mh elektric støtter indsamlingen og er med til at få træet til at vokse",
       url: "https://mh-elektric.dk/"},
     { name: "Dj boringer A/S",
       leaf: "lg",
-      tier: "Stort guldblad",
+      tier: "Stort Guldblad",
       img: "assets/Dj.png",
       text: "Dj boringer  støtter indsamlingen og er med til at få træet til at vokse",
       url: "https://djboringer.dk/"}
@@ -926,6 +929,17 @@ const CONFIG = {
 };
 
 /* ===================== render — rør ikke herunder ===================== */
+
+// Sortér Hall of Fame: størst bidrag øverst (amount, ellers ud fra bladstørrelse).
+// Samme rækkefølge bruges til både kortene og bladene på træet. Tomme kasser ({}) til sidst.
+(function sortHallOfFame(){
+  const rank = d => !d || !d.name ? -1 : (d.amount || ({ lg:15000, md:10000, sm:5000 }[d.leaf] || 0));
+  CONFIG.hallOfFame = CONFIG.hallOfFame
+    .map((d, i) => ({ d, i }))
+    .sort((a, b) => rank(b.d) - rank(a.d) || a.i - b.i)
+    .map(x => x.d);
+})();
+
 
 // Video vs. fallback
 (function initVideo(){
