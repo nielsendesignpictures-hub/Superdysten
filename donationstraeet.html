@@ -530,12 +530,13 @@ const CONFIG = {
   // OBS: samme liste findes i index.html — ret begge steder.
   hallOfFame: [
     {
-      name: "Brix Elteknik",
+      name: "Spar Nord",
+      amount: 40000,
       leaf: "lg",
-      tier: "Stort Guldblad",
-      img: "assets/brix.png",
-      text: "Brix støtter indsamlingen og er med til at få træet til at vokse.",
-      url: "https://brixelteknik.dk/"
+      tier: "40.000 kr",
+      img: "assets/spar.png",
+      text: "Spar Nord støtter indsamlingen og er med til at få træet til at vokse.",
+      url: "https://www.sparnord.dk/dit-liv/"
     },
     {
       name: "Tømrermester William Smith",
@@ -583,12 +584,12 @@ const CONFIG = {
       url: "https://multiline.dk/"
     },
     {
-      name: "Spar Nord",
+      name: "Brix Elteknik",
       leaf: "lg",
-      tier: "40.000",
-      img: "assets/spar.png",
-      text: "Spar Nord støtter indsamlingen og er med til at få træet til at vokse.",
-      url: "https://www.sparnord.dk/dit-liv/"
+      tier: "Stort Guldblad",
+      img: "assets/brix.png",
+      text: "Brix støtter indsamlingen og er med til at få træet til at vokse.",
+      url: "https://brixelteknik.dk/"
     },
     {
       name: "Servicelovers",
@@ -624,23 +625,50 @@ const CONFIG = {
       text: "Fætter VVS støtter indsamlingen og er med til at få træet til at vokse.",
       url: ""},
     { name: "Murerfirmaet Holm & Søn",
+      leaf: "lg",
+      tier: "Stort Guldblad",
+      img: "assets/holm.png",
+      text: "Holm & søn støtter indsamlingen og er med til at få træet til at vokse.",
+      url: "https://holmogson.dk/"},
+    { name: "Redhill",
       leaf: "md",
       tier: "Mellem Guldblad",
-      img: "assets/holm.png",
-      text: "Murerfirmaet Holm & Søn støtter indsamlingen og er med til at få træet til at vokse.",
-      url: "https://holmogson.dk/"},
+      img: "assets/redhill.jpg",
+      text: "Redhill har sponseret donations træer & blade",
+      url: "https://redhill.dk/"},
     { name: "Mh elektric",
       leaf: "sm",
-      tier: "lille guldblad",
+      tier: "Lille Guldblad",
       img: "assets/mh.png",
       text: "Mh elektric støtter indsamlingen og er med til at få træet til at vokse",
       url: "https://mh-elektric.dk/"},
-    {},
-    {}
+    { name: "Dj boringer A/S",
+      leaf: "lg",
+      tier: "Stort Guldblad",
+      img: "assets/Dj.png",
+      text: "Dj boringer  støtter indsamlingen og er med til at få træet til at vokse",
+      url: "https://djboringer.dk/"},
+    { name: "Beierholm",
+      leaf: "md",
+      tier: "Mellem Guldblad",
+      img: "assets/be.jpg",
+      text: "Beierholm støtter indsamlingen og er med til at få træet til at vokse.",
+      url: ""}
   ],
 };
 
 /* ===================== render — rør ikke herunder ===================== */
+
+// Sortér Hall of Fame: størst bidrag øverst (amount, ellers ud fra bladstørrelse).
+// Samme rækkefølge bruges til både kortene og bladene på træet. Tomme kasser ({}) til sidst.
+(function sortHallOfFame(){
+  const rank = d => !d || !d.name ? -1 : (d.amount || ({ lg:15000, md:10000, sm:5000 }[d.leaf] || 0));
+  CONFIG.hallOfFame = CONFIG.hallOfFame
+    .map((d, i) => ({ d, i }))
+    .sort((a, b) => rank(b.d) - rank(a.d) || a.i - b.i)
+    .map(x => x.d);
+})();
+
 
 const LEAF_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3c-8 0-14 4-15.5 10.5C3.6 17 5 20 7 21c.4-3 1.8-6 4.5-8.5C9.8 15 8.5 18 8.5 21H11c0-1 .2-2 .6-3C18 17 21 11 20 3z"/></svg>';
 
